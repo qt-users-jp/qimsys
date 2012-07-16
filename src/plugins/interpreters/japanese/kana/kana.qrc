@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/japanese/kana">
+        <file>resources/table.txt</file>
+        <file>resources/kana.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>systemtray.png</file>
+    </qresource>
+</RCC>

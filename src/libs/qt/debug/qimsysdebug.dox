@@ -1,0 +1,58 @@
+/*!
+    \def qimsysDebugOn()
+    \brief enable debug output
+ */
+
+/*!
+    \def qimsysDebugOff()
+    \brief disable debug output
+ */
+
+/*!
+    \def qimsysDebugIn()
+    \brief qimsysDebugIn() is used at the beginning of each method
+ */
+
+/*!
+    \def qimsysDebugOut()
+    \brief qimsysDebugOut() is used at the end of each method
+ */
+
+/*!
+    \def qimsysDebug()
+    \brief qimsysDebug() is qDebug() for qimsys
+ */
+
+/*!
+    \def qimsysWarning()
+    \brief qimsysWarning() is qWarning() for qimsys
+ */
+
+/*!
+    \page debug Debugging
+
+    In qimsys, we embed log at the beginning and at the end of method.
+    e.g.
+<pre>QString echo(const QString &message)
+{
+    qimsysDebugIn() << message;
+    QString ret = message;
+    ...
+    qimsysDebug() << "hoge";
+    ...
+    qimsysDebugOut() << ret;
+    return ret;
+}</pre>
+
+    To make put them out,
+<pre>int main(int argc, char **argv)
+{
+    qimsysDebugOn();
+    QString ret = message;
+    ...
+    echo("hoge");
+    ...
+    qimsysDebugOff();
+    return 0;
+}</pre>
+ */

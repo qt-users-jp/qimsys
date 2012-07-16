@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/alphabet_full.png</file>
+        <file>icons/alphabet_half.png</file>
+        <file>icons/hiragana_full.png</file>
+        <file>icons/mozc.png</file>
+        <file>icons/kana.png</file>
+        <file>icons/katakana_full.png</file>
+        <file>icons/katakana_half.png</file>
+        <file>icons/kyuriex.png</file>
+        <file>icons/roma.png</file>
+    </qresource>
+</RCC>

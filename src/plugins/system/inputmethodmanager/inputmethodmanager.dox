@@ -1,0 +1,14 @@
+/*!
+    \class InputLanguageManager
+    \brief InputLanguageManager is a plugin to determine which input language to be used
+ */
+
+/*!
+    \fn InputLanguageManager::InputLanguageManager(QObject *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn InputLanguageManager::~InputLanguageManager()
+    \brief Destructor
+ */

@@ -1,0 +1,26 @@
+/*!
+    \class QimsysConverter
+    \brief An interface for converter plugins
+ */
+
+/*!
+    \fn QimsysConverter::QimsysConverter(QObject *parent)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysConverter::~QimsysConverter()
+    \brief Destructor
+ */
+
+/*!
+    \fn QStringList QimsysConverter::locales() const
+    \brief returns locales that the plugin supports
+
+    Note that this method is not used yet.
+ */
+
+/*!
+    \fn QList<QAction*> QimsysConverter::actions()
+    \brief QActions to be used by system tray or floating tool bar
+ */

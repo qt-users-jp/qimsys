@@ -1,0 +1,43 @@
+/*!
+    \mainpage
+
+    qimsys - Qt Input Method System for Linux
+
+    \section Requierements
+
+    - <a href="http://qt.nokia.com/">Qt/X11 4.5 or later</a>
+        - QtCore
+        - QtGui
+        - QtNetwork
+        - QtDBus
+
+    \section install Install
+
+    <pre>$ git clone git@gitorious.org:qimsys/qimsys.git
+$ cd qimsys</pre>
+    - In case you have <a href="http://ruby-lang.org/">Ruby</a>, just type:
+        <pre>$ ./configure.rb</pre>
+        - pass -h for details
+    - Or run qmake manually:
+        <pre>$ qmake -r</pre>
+        - For install prefix: INSTALL_ROOT=/
+        - If you want to build sdk: CONFIG += sdk
+        - If you want to build examples: CONFIG += examples
+        - If you want to build tests: CONFIG += tests
+
+<pre>$ make
+$ sudo make install</pre>
+
+    - shadow build is also supported.
+
+    \section settings System Settings
+    <pre>$ export XMODIFIERS=\@im=qimsys
+$ export QT_IM_MODULE=qimsys</pre>
+
+<pre>$ export PATH=$INSTALL_ROOT/bin:$PATH
+$ export LD_LIBRARY_PATH=$INSTALL_ROOT/lib/:$LD_LIBRARY_PATH</pre>
+
+    \section launch Launch qimsys
+    <pre>$ qimsys &</pre>
+
+ */

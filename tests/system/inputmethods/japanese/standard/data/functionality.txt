@@ -1,0 +1,224 @@
+issue-34
+i	sapo-toshimasen
+c
+r	4
+s	サポート
+
+katakana-remove
+i	Katakana
++	a
+=	ア
+[	1
+
+katakana-full
+i	Katakana
++	kakakurai
+=	カカクライ
+>	1
++	na
+=	ナカカクライ
+>	1
++	na
+=	ナカナカクライ
+>	1
++	na
+=	ナカナカナクライ
+>	1
++	na
+=	ナカナカナクナライ
+>	1
++	na
+=	ナカナカナクナラナイ
+
+cancel
++	a
+=	あ
+c
+x
++	.
+=	あ。
+
+terminate
++	kin
+c
+r	2
+s	金
+
+input
++	doudeshou
+=	どうでしょう
+c
+r	3
+r	4
+s	どうでし
+
+input
++	kittosounandeshou
+=	きっとそうなんでしょう
+c
+r	3
+s	きっと
+>	1
+r	2
+s	そう
+>	1
+r	6
+s	なんでしょう
+r	5
+
+input
++	kittosounandeshou
+=	きっとそうなんでしょう
+
+katakana-full
+i	Katakana
++	watashinonamaehanakanodesu.
+=	ワタシノナマエハナカノデス。
+
+cancel
++	watashinonamaehanakanodesu.
+c
+r	4
+s	私の
+b
+=	わたしのなまえはなかのです。
+
+resuize|move|resize
++	watashinonamaehanakanodesu.
+c
+r	4
+s	私の
+>	1
+r	4
+r	3
+r	4
+<	1
+s	私の
+
+resize
++	watashino
+=	わたしの
+c	1
+~	わたしの
+r	2
+s	綿
+>	1
+<	1
+>	1
+r	1
+s	市
+
+convert
++	watashinonamaehanakanodesu.
+=	わたしのなまえはなかのです。
+c	1
+~	わたしのなまえはなかのです。
+r	4
+s	私の
+>	1
+r	4
+s	名前は
+>	1
+r	5
+s	中野です
+>	1
+s	。
+=	私の名前は中野です。
+C
+
+n+?
++	n
+=	n
++	r
+=	んr
+
+input with selection
++	a
+=	あ
+{	1
++	i
+=	い
+
+aiueo
++	aiueo
+=	あいうえお
+<	1
+{	1
+|	3
+#	1
+
+aiueo
++	aiueo
+=	あいうえお
+
+aiueo|
++	aiueo
+=	あいうえお
+|	5
+
+|a|i|u|e|o|
++	aiueo
+=	あいうえお
+|	5
+<	1
+|	4
+<	1
+|	3
+<	1
+|	2
+<	1
+|	1
+<	1
+|	0
+<	1
+|	5
+
+kyu-to
++	kyu-to
+=	きゅーと
+
+|k|yu|-|to|
++	kyu-to
+=	きゅーと
+|	4
+<	2
+|	2
+<	2
+|	0
+<	1
+|	4
+
+input 50 sounds by romaji
++	aiueokakikukekosashisusesotachitsutetonaninunenohahifuhehomamimumemoyayuyorarirurerowawonn
+=	あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん
+
+aiueo[[[[[
++	aiueo
+[	1
+=	あいうえ
+[	1
+=	あいう
+[	1
+=	あい
+[	1
+=	あ
+[	1
+=
+
+fa[
++	fa
+=	ふぁ
+[	1
+=	ふ
+~	ふ
+_	fu
+
+fafa
++	fafa
+=	ふぁふぁ
+[	1
+=	ふぁふ
+<	1
+[	1
+=	ふふ
+

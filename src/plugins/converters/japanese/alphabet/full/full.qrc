@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/japanese/alphabet/full">
+        <file>resources/alphabet-full.png</file>
+        <file>resources/alphabet-full.txt</file>
+    </qresource>
+</RCC>

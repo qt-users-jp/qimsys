@@ -1,0 +1,77 @@
+/*!
+    \class QimsysEngine
+    \brief QimsysEngine is an interface for conversion engine
+ */
+
+/*!
+    \fn QimsysEngine::QimsysEngine(QObject *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysEngine::~QimsysEngine()
+    \brief Destructor
+ */
+
+/*!
+    \fn QString QimsysEngine::identifier() const
+    \brief identifier for engine
+
+    \todo can be replaced with QimsysAbstractPluginObject::name?
+ */
+
+/*!
+    \fn bool QimsysEngine::isAvailable() const
+    \brief returns if the plugin is available
+ */
+
+/*!
+    \fn QimsysEngineDictionary *QimsysEngine::dictionary(QObject *parent = 0)
+    \brief return a subclss of QimsysEngineDictionary if the engine supports dictionary
+ */
+
+/*!
+    \fn void QimsysEngine::setRawString(const QString &rawString)
+    \brief set raw string
+ */
+
+/*!
+    \fn void QimsysEngine::setInputString(const QString &inputString)
+    \brief set input string to be converted
+
+    predicted(const QimsysConversionItemList &predictions) may be emitted
+ */
+
+/*!
+    \fn void QimsysEngine::convert()
+    \brief start conversion
+
+    conversionsChanged(const QimsysConversionItemList &conversions) may be emitted
+ */
+
+/*!
+    \fn void QimsysEngine::resize(int index, int delta)
+    \brief resize segments
+
+    conversionsChanged(const QimsysConversionItemList &conversions) may be emitted
+ */
+
+/*!
+    \fn void QimsysEngine::commit(const QimsysConversionItemList &conversions)
+    \brief notify final state for engine to learn
+ */
+
+/*!
+    \fn QimsysConversionItemList QimsysEngine::candidates(int index)
+    \brief get candidate list of \a index
+ */
+
+/*!
+    \fn void QimsysEngine::conversionsChanged(const QimsysConversionItemList &conversions)
+    \brief This signal is emitted when conversion is changed
+ */
+
+/*!
+    \fn void QimsysEngine::predicted(const QimsysConversionItemList &predictions)
+    \brief This signal is emitted when engine predicts next input
+ */

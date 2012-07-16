@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>layouts/jp106.txt</file>
+    </qresource>
+</RCC>

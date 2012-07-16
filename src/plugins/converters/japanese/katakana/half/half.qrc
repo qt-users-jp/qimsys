@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/japanese/katakana/half">
+        <file>resources/katakana-half.png</file>
+        <file>resources/katakana-half.txt</file>
+    </qresource>
+</RCC>
