@@ -1,0 +1,98 @@
+/*!
+    \class QimsysAbstractPluginObject
+    \brief Base class of object for qimsys plugin system
+
+    \sa QimsysPluginManager::object()
+ */
+
+/*!
+    \enum QimsysAbstractPluginObject::CategoryType
+    \brief type of category
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::Hidden
+     \brief This category is invisible
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::CanBeNone
+     \brief This category can have multiple choice or nothing
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::AlwaysOne
+     \brief This category has exactly one plugin
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::MoreThanOne
+     \brief This category has one or more plugins
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::OneOrNone
+     \brief This category has one plugin or nothing
+ */
+
+/*!
+     \var QimsysAbstractPluginObject::All
+     \brief This category has all plugins
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::icon
+    \brief icon of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::name
+    \brief name of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::description
+    \brief description of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::author
+    \brief author of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::url
+    \brief url of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::translator
+    \brief translator of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::license
+    \brief license of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::enabled
+    \brief enabled of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::groups
+    \brief groups of plugin
+
+    This is not used yet.
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::categoryType
+    \brief categoryType of plugin
+ */
+
+/*!
+    \property QimsysAbstractPluginObject::categoryName
+    \brief categoryName of plugin
+ */

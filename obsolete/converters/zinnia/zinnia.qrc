@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/zinnia.png</file>
+        <file>icons/zinniawidget.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,49 @@
+/*!
+    \class QimsysSettingsWidget
+    \brief widget for plugin settings
+ */
+
+/*!
+    \fn QimsysSettingsWidget::QimsysSettingsWidget(QWidget *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysSettingsWidget::QimsysSettingsWidget(QimsysAbstractPluginObject *plugin, QWidget *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysSettingsWidget::~QimsysSettingsWidget()
+    \brief Destructor
+ */
+
+/*!
+    \fn bool QimsysSettingsWidget::isModified() const
+    \brief returns if settings is modified
+ */
+
+/*!
+    \fn void QimsysSettingsWidget::save()
+    \brief save settings
+ */
+
+/*!
+    \fn void QimsysSettingsWidget::setModified(bool modified = true)
+    \brief set modified flag
+ */
+
+/*!
+    \fn void QimsysSettingsWidget::modifiedChanged(bool modified)
+    \brief This signal is emitted when modified
+ */
+
+/*!
+    \fn void QimsysSettingsWidget::saved()
+    \brief This signal is emitted after saved
+ */
+
+/*!
+    \fn QWidget *QimsysSettingsWidget::about(QimsysAbstractPluginObject *plugin, const QString &spec, QWidget *parent = 0)
+    \todo
+ */

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/japanese/alphabet/half">
+        <file>resources/alphabet-half.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Value=1.0
+Encoding=UTF-8
+Exec=qimsys
+Name=QIMSYS
+GenericName=Input Method for Qt4
+Icon=qimsys
+Terminal=false
+Type=Application
+Categories=Qt;Utility;
+X-KDE-StartupNotify=false
+X-KDE-autostart-after=panel

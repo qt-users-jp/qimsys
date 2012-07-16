@@ -1,0 +1,41 @@
+/*!
+    \class QimsysKeySequence
+    \brief QimsysKeySequence is yet another QKeySequence
+
+    Until Qt 4.7 QKeySequence doesn't handle Japanese/Korean keyboard specific
+    keys like Zenkaku_Hankaku. QimsysKeySequence covers such keys if they are not
+    handled in QKeySequence.
+
+    \sa http://qt.gitorious.org/qt/qt/commit/b19899f81cb7ac3b35e5fad3af777e89f1627474
+    \sa QKeySequence
+ */
+
+/*!
+    \fn QimsysKeySequence::QimsysKeySequence()
+    \brief Default constructor
+ */
+
+/*!
+    \fn QimsysKeySequence::QimsysKeySequence(const QimsysKeySequence &other)
+    \brief copy constructor
+ */
+
+/*!
+    \fn QimsysKeySequence::QimsysKeySequence(const QString &key)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysKeySequence::QimsysKeySequence(int k1)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysKeySequence::~QimsysKeySequence()
+    \brief Destructor
+ */
+
+/*!
+    \fn QString QimsysKeySequence::toString() const
+    \brief string value
+ */

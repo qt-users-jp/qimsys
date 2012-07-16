@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>icon/anthy.png</file>
+        <file>wordtypedef.txt</file>
+    </qresource>
+</RCC>

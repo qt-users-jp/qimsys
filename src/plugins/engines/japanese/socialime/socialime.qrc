@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>icons/socialime.png</file>
+    </qresource>
+</RCC>

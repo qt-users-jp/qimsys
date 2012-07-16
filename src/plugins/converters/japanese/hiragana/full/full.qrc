@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/japanese/hiragana/full">
+        <file>resources/hiragana-full.png</file>
+    </qresource>
+</RCC>

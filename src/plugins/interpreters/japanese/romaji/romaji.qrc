@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/japanese/romaji">
+        <file>resources/table.txt</file>
+        <file>resources/romaji.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,115 @@
+/*!
+    \page subclass-qimsysabstractipcobject Implementing ipc object inherits QimsysAbstractIpcObject
+
+    \section section1 As an example, we will show how to implement an object with an int property.
+
+    \subsection object_h object.h
+    <pre>
+\#include "qimsysabstractipcobject.h"
+
+class Object : public QimsysAbstractIpcObject
+{
+    Q_OBJECT
+    Q_PROPERTY(int value READ value WRITE setValue)
+    Q_CLASSINFO("D-Bus Interface", "local.Object")
+public:
+    Object(QObject *parent, QimsysAbstractIpcObject::Type type);
+    ~Object();
+    virtual void init();
+
+    int value() const;
+
+public slots:
+    void setValue(int value);
+
+signals:
+    void valueChanged(int value);
+
+protected:
+    QimsysAbstractIpcObject *server() const;
+
+private:
+    class Private;
+    Private *d;
+};</pre>
+    \subsection object_cpp object.cpp
+    <pre>
+\#include "object.h"
+
+class Object::Private : private QObject
+{
+    Q_OBJECT
+public:
+    Private(Object *parent);
+    ~Private();
+
+    void init();
+
+private:
+    Object *q;
+
+public:
+    static Object *server;
+    int value;
+};
+
+Object *Object::Private::server = 0;
+
+Object::Private::Private(Object *parent)
+    : QObject(parent)
+    , q(parent)
+    , value(0)
+{
+    switch (q->type()) {
+    case Server:
+        server = q;
+        break;
+    case Client:
+        break;
+    }
+}
+
+Object::Private::~Private()
+{
+}
+
+void Object::Private::init()
+{
+    switch (q->type()) {
+    case Server:
+        break;
+    case Client:
+        connect(q->proxy(), SIGNAL(vlaueChanged(int)), q, SIGNAL(valueChanged(int)));
+        break;
+    }
+}
+
+Object::Object(QObject *parent, Type type)
+    : QimsysAbstractIpcObject(parent, type)
+{
+    d = new Private(this);
+}
+
+Object::~Object()
+{
+    delete d;
+}
+
+void Object::init()
+{
+    QimsysAbstractIpcObject::init();
+    d->init();
+}
+
+QimsysAbstractIpcObject *Object::server() const
+{
+    return d->server;
+}
+
+getProp(Object, int, value)
+setProp(Object, int, value, setValue)
+
+\#include "object.moc"
+
+    </pre>
+*/

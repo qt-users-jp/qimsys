@@ -1,0 +1,3 @@
+DEPENDPATH += $$PWD
+INCLUDEPATH += $$PWD
+LIBS += -L$$PWD -lXimd

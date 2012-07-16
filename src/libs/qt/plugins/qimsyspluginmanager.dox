@@ -1,0 +1,15 @@
+/*!
+    \class QimsysPluginManager
+    \brief QimsysPluginManager loads plugins
+
+    QimsysPluginManager is used to load plugins
+ */
+
+/*!
+    \fn QList<T*> QimsysPluginManager::objects(QObject *parent = 0)
+    \brief returns list of QimsysAbstractPluginObject
+
+<pre>foreach(QimsysConverter *converter, QimsysPluginManager::objects<QimsysConverter>(this)) {
+    qDebug() << converter->name();
+}</pre>
+ */

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>JapaneseSettings</class>
+ <widget class="QWidget" name="JapaneseSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>552</width>
+    <height>454</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="keyAssign">
+      <attribute name="title">
+       <string>&amp;Key assign</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>&amp;Style:</string>
+           </property>
+           <property name="buddy">
+            <cstring>style</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="style"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="reset">
+           <property name="text">
+            <string>&amp;Reset</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTabWidget" name="tabWidget_2">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="ja_JP::KeyActionEdit" name="direct">
+          <attribute name="title">
+           <string>&amp;Direct</string>
+          </attribute>
+         </widget>
+         <widget class="ja_JP::KeyActionEdit" name="empty">
+          <attribute name="title">
+           <string>&amp;Empty</string>
+          </attribute>
+         </widget>
+         <widget class="ja_JP::KeyActionEdit" name="input">
+          <attribute name="title">
+           <string>&amp;Input</string>
+          </attribute>
+         </widget>
+         <widget class="ja_JP::KeyActionEdit" name="convert">
+          <attribute name="title">
+           <string>&amp;Convert</string>
+          </attribute>
+         </widget>
+         <widget class="ja_JP::KeyActionEdit" name="select">
+          <attribute name="title">
+           <string>&amp;Select</string>
+          </attribute>
+         </widget>
+         <widget class="ja_JP::KeyActionEdit" name="predict">
+          <attribute name="title">
+           <string>&amp;Predict</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ja_JP::KeyActionEdit</class>
+   <extends>QWidget</extends>
+   <header>keyactionedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,37 @@
+/*!
+    \class QimsysKeyWidget
+    \brief QimsysKeyWidget is used to get key sequence
+
+    QimsysKeyWidget is a button to get key sequence for shortcut.
+    This class also has functionality to reset and clear current key sequence.
+ */
+
+/*!
+    \property QimsysKeyWidget::sequence
+    \brief This property holds key sequence
+
+    \li [read] QKeySequence QimsysKeyWidget::sequence() const
+    \li [write] void QimsysKeyWidget::setSequence(const QKeySequence &sequence)
+    \li [notify] void QimsysKeyWidget::sequenceChanged(QKeySequence sequence)
+ */
+
+/*!
+    \fn QimsysKeyWidget::QimsysKeyWidget(QWidget *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysKeyWidget::~QimsysKeyWidget()
+    \brief Destructor
+ */
+
+/*!
+    \fn void QimsysKeyWidget::reset()
+    \brief reset key sequence to original one
+ */
+
+/*!
+    \fn void QimsysKeyWidget::clear()
+    \brief clear key sequence
+ */
+

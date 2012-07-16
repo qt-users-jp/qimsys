@@ -1,0 +1,28 @@
+/*!
+    \class QimsysPlugin
+    \brief QimsysPlugin is the base class for all qimsys plugins.
+ */
+
+/*!
+    \fn QimsysPlugin::QimsysPlugin(QObject *parent = 0)
+    \brief Constructor
+ */
+
+/*!
+    \fn QimsysPlugin::~QimsysPlugin()
+    \brief Destructor
+ */
+
+/*!
+    \fn QimsysAbstractPluginObject *QimsysPlugin::object(QObject *parent = 0)
+    \brief to get qimsys plugin object from plugin
+
+    This method will call createObject(QObject *parent) if it doesn't create the object yet.
+ */
+
+/*!
+    \fn QimsysAbstractPluginObject *QimsysPlugin::createObject(QObject *parent)
+    \brief create the object
+
+    This method creates plugin object in subclass
+ */

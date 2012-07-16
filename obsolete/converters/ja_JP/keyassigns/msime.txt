@@ -1,0 +1,92 @@
+0x01	Zenkaku Hankaku	Turn on QIMSYS
+
+0x02	Zenkaku Hankaku	Turn off QIMSYS
+0x02	F6	Hiragana mode
+0x02	F7	Katakana mode
+0x02	F8	Halfwidth Katakana mode
+0x02	F9	Fullwidth Alphabet mode
+0x02	F10	Alphabet mode
+0x02	Hiragana Katakana	Next character mode
+0x02	Shift+Hiragana Katakana	Previous character mode
+0x02	Alt+Romaji	Previous typing mode
+0x02	Alt+Shift+Romaji	Previous typing mode
+0x02	Space	Input space
+0x02	Ctrl+Space	Input Fullwidth space
+0x02	Shift+Space	Input Halfwidth space
+0x02	Ctrl+Shift+Space	Input the other width space
+0x02	Up	Select previous prediction
+0x02	Down	Select next prediction
+0x02	Tab	Select next prediction
+0x02	Shift+Backtab	Select previous prediction
+0x02	Esc	Clear
+
+0x04	Left	Move cursor left
+0x04	Right	Move cursor right
+0x04	Ctrl+Left	Move cursor first
+0x04	Ctrl+Right	Move cursor last
+0x04	Shift+Left	Change selection length left
+0x04	Shift+Right	Change selection length right
+0x04	Backspace	Remove front
+0x04	Delete	Remove back
+0x04	Return	Commit
+0x04	Space	Convert
+0x04	Ctrl+Space	Input Fullwidth space
+0x04	Shift+Space	Input Halfwidth space
+0x04	Ctrl+Shift+Space	Input the other width space
+0x04	Up	Select previous prediction
+0x04	Down	Select next prediction
+0x04	Tab	Select next prediction
+0x04	Shift+Backtab	Select previous prediction
+0x04	F6	Convert to Hiragana
+0x04	F7	Convert to Katakana
+0x04	F8	Convert to Halfwidth Katakana
+0x04	F9	Convert to Fullwidth Alphabet
+0x04	F10	Convert to Alphabet
+0x04	Hiragana Katakana	Next character mode
+0x04	Shift+Hiragana Katakana	Previous character mode
+0x04	Alt+Romaji	Previous typing mode
+0x04	Alt+Shift+Romaji	Previous typing mode
+0x04	Esc	Clear
+
+0x08	Left	Move cursor left
+0x08	Right	Move cursor right
+0x08	Ctrl+Left	Move cursor first
+0x08	Ctrl+Right	Move cursor last
+0x08	Shift+Left	Resize segment left
+0x08	Shift+Right	Resize segment right
+0x08	Down	Select next cadidate
+0x08	Up	Select previous cadidate
+0x08	Backspace	Cancel
+0x08	Delete	Cancel
+0x08	Return	Commit
+0x08	Space	Select next cadidate
+0x08	Shift+Space	Select previous cadidate
+0x08	F6	Convert to Hiragana
+0x08	F7	Convert to Katakana
+0x08	F8	Convert to Halfwidth Katakana
+0x08	F9	Convert to Fullwidth Alphabet
+0x08	F10	Convert to Alphabet
+
+0x10	Left	Move cursor left
+0x10	Right	Move cursor right
+0x10	Ctrl+Left	Move cursor first
+0x10	Ctrl+Right	Move cursor last
+0x10	Shift+Left	Resize segment left
+0x10	Shift+Right	Resize segment right
+0x10	Down	Select next cadidate
+0x10	Up	Select previous cadidate
+0x10	Backspace	Cancel
+0x10	Delete	Cancel
+0x10	Return	Commit
+0x10	Space	Select next cadidate
+0x10	Shift+Space	Select previous cadidate
+
+0x20	Space	Select next prediction
+0x20	Shift+Space	Select previous prediction
+0x20	Up	Select previous prediction
+0x20	Down	Select next prediction
+0x20	Tab	Select next prediction
+0x20	Shift+Backtab	Select previous prediction
+0x20	Backspace	Cancel
+0x20	Delete	Cancel
+0x20	Return	Commit

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Qimsys Status
+Comment=Status of qimsys
+Icon=qimsys.png
+Type=default
+X-Path=lib-qimsys-n900-statusbar.so

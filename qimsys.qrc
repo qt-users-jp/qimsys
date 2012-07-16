@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>LGPL_EXCEPTION.TXT</file>
+        <file>LICENSE.LGPL</file>
+    </qresource>
+</RCC>

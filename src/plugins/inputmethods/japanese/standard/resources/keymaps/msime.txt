@@ -1,0 +1,78 @@
+Direct	Zenkaku Hankaku	Turn on qimsys
+Direct	Hiragana Katakana	Turn on qimsys
+Direct	Alt+`	Turn on qimsys
+
+Empty	Zenkaku Hankaku	Turn off qimsys
+Empty	CapsLock	Turn off qimsys
+Empty	Alt+`	Turn off qimsys
+Empty	Hiragana Katakana	Next character mode
+Empty	Shift+Hiragana Katakana	Previous character mode
+Empty	Alt+Romaji	Previous typing mode
+Empty	Alt+Shift+Romaji	Previous typing mode
+Empty	Space	Input space
+Empty	Ctrl+Space	Input Fullwidth space
+Empty	Shift+Space	Input Halfwidth space
+Empty	Ctrl+Shift+Space	Input the other width space
+#Empty	Tab	Select next candidate
+#Empty	Shift+Backtab	Select previous candidate
+
+Input	Left	Move cursor previous
+Input	Right	Move cursor next
+Input	Ctrl+Left	Move cursor first
+Input	Ctrl+Right	Move cursor last
+Input	Shift+Left	Change selection length previous
+Input	Shift+Right	Change selection length next
+Input	Backspace	Remove previous
+Input	Delete	Remove next
+Input	Return	Commit all
+Input	Space	Convert
+Input	Ctrl+Space	Input Fullwidth space
+Input	Shift+Space	Input Halfwidth space
+Input	Ctrl+Shift+Space	Input the other width space
+#Input	Tab	Select next candidate
+#Input	Shift+Backtab	Select previous candidate
+Input	F6	Convert to Hiragana
+Input	F7	Convert to Katakana
+Input	F8	Convert to Halfwidth Katakana
+Input	F9	Convert to Fullwidth Alphabet
+Input	F10	Convert to Alphabet
+Input	Hiragana Katakana	Next character mode
+Input	Shift+Hiragana Katakana	Previous character mode
+Input	Alt+Romaji	Previous typing mode
+Input	Alt+Shift+Romaji	Previous typing mode
+Input	Esc	Clear
+
+Convert	Left	Move cursor previous
+Convert	Right	Move cursor next
+Convert	Ctrl+Left	Move cursor first
+Convert	Ctrl+Right	Move cursor last
+Convert	Shift+Left	Resize segment shorter
+Convert	Shift+Right	Resize segment longer
+Convert	Down	Select next candidate
+Convert	Up	Select previous candidate
+Convert	Backspace	Cancel
+Convert	Delete	Cancel
+Convert	Return	Commit all
+Convert	Space	Select next candidate
+Convert	Shift+Space	Select previous candidate
+Convert	F6	Convert to Hiragana
+Convert	F7	Convert to Katakana
+Convert	F8	Convert to Halfwidth Katakana
+Convert	F9	Convert to Fullwidth Alphabet
+Convert	F10	Convert to Alphabet
+
+Select	Left	Move cursor previous
+Select	Right	Move cursor next
+Select	Ctrl+Left	Move cursor first
+Select	Ctrl+Right	Move cursor last
+Select	Shift+Left	Resize segment shorter
+Select	Shift+Right	Resize segment longer
+Select	Down	Select next candidate
+Select	Up	Select previous candidate
+Select	Backspace	Cancel
+Select	Delete	Cancel
+Select	Return	Commit all
+Select	Space	Select next candidate
+Select	Shift+Space	Select previous candidate
+Select	Tab	Select next candidate
+Select	Shift+Backtab	Select previous candidate

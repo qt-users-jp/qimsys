@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/japan.png</file>
+        <file>icons/alphabet_full.png</file>
+        <file>icons/alphabet_half.png</file>
+        <file>icons/hiragana_full.png</file>
+        <file>icons/kana.png</file>
+        <file>icons/katakana_full.png</file>
+        <file>icons/katakana_half.png</file>
+        <file>icons/roma.png</file>
+        <file>keyassigns/msime.txt</file>
+        <file>keyassigns/atok.txt</file>
+        <file>typing/kana.txt</file>
+        <file>typing/roma.txt</file>
+        <file>character/katakana_full.txt</file>
+        <file>character/alphabet.txt</file>
+        <file>character/katakana_half.txt</file>
+        <file>typing/kyuriex.txt</file>
+        <file>icons/kyuriex.png</file>
+        <file>keyassigns/maemo.txt</file>
+    </qresource>
+</RCC>
