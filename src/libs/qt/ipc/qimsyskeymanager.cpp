@@ -134,7 +134,7 @@ void QimsysKeyManager::process(QString text, int keycode, int modifiers, bool is
 
 bool QimsysKeyManager::keyPress(const QString &text, int keycode, int modifiers, bool autoRepeat)
 {
-    qimsysDebugIn() << text << QString("%1").arg(keycode, 0, 16) << modifiers << autoRepeat;
+    qimsysDebugIn() << text << QString("0x%1").arg(keycode, 0, 16) << modifiers << autoRepeat;
     switch (type()) {
     case Server:
         d->isAccepted = false;
@@ -145,7 +145,7 @@ bool QimsysKeyManager::keyPress(const QString &text, int keycode, int modifiers,
             d->server->keyPress(text, keycode, modifiers, autoRepeat);
 #ifndef QIMSYS_NO_DBUS
         } else {
-            qobject_cast<QDBusAbstractInterface*>(proxy())->call(QDBus::BlockWithGui, "keyPress", text, keycode, modifiers, autoRepeat);
+            qobject_cast<QDBusAbstractInterface*>(proxy())->call(QDBus::Block, "keyPress", text, keycode, modifiers, autoRepeat);
 #endif // QIMSYS_NO_DBUS
         }
 //        QMetaObject::invokeMethod(proxy(), "keyPress", Q_ARG(QString, text), Q_ARG(int, keycode), Q_ARG(int, modifiers), Q_ARG(bool, autoRepeat));
@@ -158,7 +158,7 @@ bool QimsysKeyManager::keyPress(const QString &text, int keycode, int modifiers,
 
 bool QimsysKeyManager::keyRelease(const QString &text, int keycode, int modifiers, bool autoRepeat)
 {
-    qimsysDebugIn() << text << keycode << modifiers << autoRepeat;
+    qimsysDebugIn() << text << QString("0x%1").arg(keycode, 0, 16) << modifiers << autoRepeat;
     switch (type()) {
     case Server:
         d->isAccepted = false;
@@ -169,7 +169,7 @@ bool QimsysKeyManager::keyRelease(const QString &text, int keycode, int modifier
             d->server->keyRelease(text, keycode, modifiers, autoRepeat);
 #ifndef QIMSYS_NO_DBUS
         } else {
-            qobject_cast<QDBusAbstractInterface*>(proxy())->call(QDBus::BlockWithGui, "keyRelease", text, keycode, modifiers, autoRepeat);
+            qobject_cast<QDBusAbstractInterface*>(proxy())->call(QDBus::Block, "keyRelease", text, keycode, modifiers, autoRepeat);
 #endif // QIMSYS_NO_DBUS
         }
 //        QMetaObject::invokeMethod(proxy(), "keyRelease", Q_ARG(QString, text), Q_ARG(int, keycode), Q_ARG(int, modifiers), Q_ARG(bool, autoRepeat));
