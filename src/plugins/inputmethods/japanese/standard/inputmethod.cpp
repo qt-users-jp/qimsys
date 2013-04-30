@@ -61,7 +61,7 @@ private slots:
     void engineChanged(const QString &identifier);
 
     void keyPressed(const QString &text, int keycode, int modifiers, bool autoRepeat);
-//    void keyReleased(const QString &text, int keycode, int modifiers, bool autoRepeat);
+    void keyReleased(const QString &text, int keycode, int modifiers, bool autoRepeat);
 
     void currentIndexChanged(int currentIndex);
 
@@ -84,6 +84,8 @@ private:
 #ifndef QIMSYS_NO_GUI
     QTimer resetIconTimer;
 #endif
+
+    int acceptedKeyCount;
 };
 
     }
@@ -100,6 +102,7 @@ InputMethod::Private::Private(InputMethod *parent)
     , preeditManager(0)
     , candidateManager(0)
     , keyActions(0)
+    , acceptedKeyCount(0)
 {
     qimsysDebugIn() << parent;
     init();
@@ -166,6 +169,7 @@ void InputMethod::Private::activeChanged(bool active)
             keyManager = new QimsysKeyManager(this);
             keyManager->init();
             connect(keyManager, SIGNAL(keyPressed(QString,int,int,bool)), this, SLOT(keyPressed(QString,int,int,bool)));
+            connect(keyManager, SIGNAL(keyReleased(QString,int,int,bool)), this, SLOT(keyReleased(QString,int,int,bool)));
         }
 
         if (!preeditManager) {
@@ -199,6 +203,7 @@ void InputMethod::Private::activeChanged(bool active)
 
         if (keyManager) {
             disconnect(keyManager, SIGNAL(keyPressed(QString,int,int,bool)), this, SLOT(keyPressed(QString,int,int,bool)));
+            disconnect(keyManager, SIGNAL(keyReleased(QString,int,int,bool)), this, SLOT(keyReleased(QString,int,int,bool)));
             keyManager->deleteLater();
             keyManager = 0;
         }
@@ -360,9 +365,19 @@ void InputMethod::Private::keyPressed(const QString &text, int keycode, int modi
     qimsysDebugIn() << text << keycode << modifiers << autoRepeat;
 
     int key = keycode;
-    if (modifiers & Qt::ControlModifier) key += Qt::CTRL;
-    if (modifiers & Qt::AltModifier) key += Qt::ALT;
-    if (modifiers & Qt::ShiftModifier) key += Qt::SHIFT;
+    acceptedKeyCount = 1;
+    if (modifiers & Qt::ControlModifier) {
+        key += Qt::CTRL;
+        acceptedKeyCount++;
+    }
+    if (modifiers & Qt::AltModifier) {
+        key += Qt::ALT;
+        acceptedKeyCount++;
+    }
+    if (modifiers & Qt::ShiftModifier) {
+        key += Qt::SHIFT;
+        acceptedKeyCount++;
+    }
 
     QimsysKeySequence seq(key);
     if (keyActions->contains(seq)) {
@@ -403,8 +418,24 @@ void InputMethod::Private::keyPressed(const QString &text, int keycode, int modi
         }
     }
 
+    if (!keyManager->isAccepted()) {
+        acceptedKeyCount = 0;
+    }
     qimsysDebugOut() << keyManager->isAccepted();
 //    qimsysDebugOff();
+}
+
+void InputMethod::Private::keyReleased(const QString &text, int keycode, int modifiers, bool autoRepeat)
+{
+    if (keyManager->isAccepted()) return;
+
+//    qimsysDebugOn();
+    qimsysDebugIn() << text << keycode << modifiers << autoRepeat;
+
+    if (acceptedKeyCount > 0) {
+        keyManager->accept();
+        acceptedKeyCount--;
+    }
 }
 
 void InputMethod::Private::currentIndexChanged(int currentIndex)
