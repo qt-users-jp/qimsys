@@ -464,11 +464,7 @@ void KeyActions::Private::init()
     preeditManager.init();
     candidateManager.init();
     keyboardManager.init();
-#ifdef QIMSYS_PLATFORM_MAEMO
-    readKeyMap(QLatin1String(":/japanese/standard/resources/keymaps/maemo.txt"));
-#else
     readKeyMap(QLatin1String(":/japanese/standard/resources/keymaps/msime.txt"));
-#endif
 
     composingChanged(applicationManager.composing());
     stateChanged(inputMethodManager.state());

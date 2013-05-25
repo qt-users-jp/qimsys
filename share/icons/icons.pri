@@ -1,6 +1,6 @@
 include(../../qimsys.pri)
 
-qimsys_platform_x11 | qimsys_platform_maemo {
+qimsys_platform_x11 {
     icons.files = $$PWD/qimsys.png \
                   $$PWD/qimsys_blue.png \
                   $$PWD/qimsys_cyan.png \
