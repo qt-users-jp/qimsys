@@ -15,7 +15,7 @@ SOURCES *= $$PLUGIN_SOURCES
 
 contains(QIMSYS_CONFIG, sdk) {
     plugin_headers.files = $$PLUGIN_HEADERS
-    plugin_headers.path = $$PREFIX/include/qimsys/qt
+    plugin_headers.path = $$PREFIX/include/qimsys/qt4
     INSTALLS += plugin_headers
 }
 

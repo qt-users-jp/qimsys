@@ -30,6 +30,6 @@ include(../../../qimsys.pri)
 
 LIBS *= -L$$QIMSYS_BUILD_TREE/$$QIMSYS_TARGET_PATH/$$QIMSYS_LIBRARY_PATH
 
-LIBS *= -l$$qtLibraryName(qimsys_qt)
+LIBS *= -l$$qtLibraryName(qimsys_qt4)
 
 !contains(QIMSYS_CONFIG, no-dbus): QT += dbus

@@ -41,7 +41,7 @@ SOURCES *= $$IPC_SOURCES
 
 contains(QIMSYS_CONFIG, sdk) {
     ipc_headers.files = $$IPC_HEADERS
-    ipc_headers.path = $$PREFIX/include/qimsys/qt
+    ipc_headers.path = $$PREFIX/include/qimsys/qt4
     INSTALLS += ipc_headers
 }
 

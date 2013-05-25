@@ -1,19 +1,19 @@
 TEMPLATE = lib
-TARGET = qimsys_qt
+TARGET = qimsys_qt4
 
 include(../../../qimsyslibrary.pri)
 
 DEFINES += QIMSYS_LIBRARY
 
 LIB_HEADERS = $$PWD/qimsysglobal.h
-RESOURCES += qt.qrc
+RESOURCES += qt4.qrc
 
 INCLUDEPATH += $$PWD
 HEADERS *= $$LIB_HEADERS
 
 contains(QIMSYS_CONFIG, sdk) {
     lib_headers.files = $$LIB_HEADERS
-    lib_headers.path = $$PREFIX/include/qimsys/qt
+    lib_headers.path = $$PREFIX/include/qimsys/qt4
     INSTALLS += lib_headers
 }
 
