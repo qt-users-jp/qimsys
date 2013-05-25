@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = qt
+SUBDIRS = qt4

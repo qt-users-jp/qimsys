@@ -99,41 +99,34 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="../../../src/apps/n900/imswitch/dialog.ui"/>
         <source>Switch Input Method</source>
-        <translation>インプとメソッドの切り替え</translation>
+        <translation type="obsolete">インプとメソッドの切り替え</translation>
     </message>
     <message>
-        <location/>
         <source>&amp;Gtk+:</source>
-        <translation>&amp;Gtk+:</translation>
+        <translation type="obsolete">&amp;Gtk+:</translation>
     </message>
     <message>
-        <location/>
         <source>&amp;Qt:</source>
-        <translation>&amp;Qt:</translation>
+        <translation type="obsolete">&amp;Qt:</translation>
     </message>
 </context>
 <context>
     <name>Dialog::Private</name>
     <message>
-        <location filename="../../../src/apps/n900/imswitch/dialog.cpp" line="+49"/>
-        <location line="+23"/>
         <source>System</source>
-        <translation>システム</translation>
+        <translation type="obsolete">システム</translation>
     </message>
 </context>
 <context>
     <name>Dialog::Private::Private</name>
     <message>
-        <location line="+129"/>
         <source>Unset QT_IM_MODULE environment variables, then restart the device.</source>
-        <translation>環境変数「QT_IM_MODULE」の設定をやめて一度再起動してください。</translation>
+        <translation type="obsolete">環境変数「QT_IM_MODULE」の設定をやめて一度再起動してください。</translation>
     </message>
     <message>
-        <location line="+8"/>
         <source>You need to restart the device to apply the change</source>
-        <translation>変更を反映させるために再起動が必要です</translation>
+        <translation type="obsolete">変更を反映させるために再起動が必要です</translation>
     </message>
 </context>
 <context>
@@ -596,49 +589,42 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
         <translation type="obsolete">qimsys について</translation>
     </message>
     <message>
-        <location filename="../../../src/plugins/uis/n900/about/object.cpp" line="+60"/>
         <source>About qimsys</source>
-        <translation>qimsys について</translation>
+        <translation type="obsolete">qimsys について</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Tasuku Suzuki</source>
-        <translation>鈴木 佑</translation>
+        <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
         <source>None</source>
         <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>User Interface/About</source>
-        <translation>ユーザーインターフェース/qimsys について</translation>
+        <translation type="obsolete">ユーザーインターフェース/qimsys について</translation>
     </message>
 </context>
 <context>
     <name>N900::About::Widget</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/about/widget.cpp" line="+32"/>
         <source>About qimsys</source>
-        <translation>qimsys について</translation>
+        <translation type="obsolete">qimsys について</translation>
     </message>
 </context>
 <context>
     <name>N900::Dialog::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/object.cpp" line="+58"/>
         <source>User Interface/System Controler</source>
-        <translation>ユーザーインターフェース/システム</translation>
+        <translation type="obsolete">ユーザーインターフェース/システム</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>N900: Settings Dialog</source>
-        <translation>N900 の設定切り替えダイアログ</translation>
+        <translation type="obsolete">N900 の設定切り替えダイアログ</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Tasuku Suzuki</source>
-        <translation>鈴木 佑</translation>
+        <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
         <source>None</source>
@@ -648,9 +634,8 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::Dialog::Widget::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/widget.cpp" line="+121"/>
         <source>Open...</source>
-        <translation>開く...</translation>
+        <translation type="obsolete">開く...</translation>
     </message>
 </context>
 <context>
@@ -667,19 +652,16 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::Keyboard::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/keyboard/object.cpp" line="+55"/>
         <source>User Interface/Input Window</source>
-        <translation>ユーザーインターフェース/入力ウィンドウ</translation>
+        <translation type="obsolete">ユーザーインターフェース/入力ウィンドウ</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>N900: Virtual Keyboard</source>
-        <translation>N900 用のバーチャルキーボード</translation>
+        <translation type="obsolete">N900 用のバーチャルキーボード</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Tasuku Suzuki</source>
-        <translation>鈴木 佑</translation>
+        <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
         <source>None</source>
@@ -689,54 +671,46 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::UserDictionary::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/userdictionary/object.cpp" line="+60"/>
         <source>User Dictionary Editor</source>
-        <translation>ユーザー辞書の編集</translation>
+        <translation type="obsolete">ユーザー辞書の編集</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Tasuku Suzuki</source>
-        <translation>鈴木 佑</translation>
+        <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
         <source>None</source>
         <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>User Interface/User Dictionary Editor</source>
-        <translation>ユーザーインターフェース/ユーザー辞書の編集</translation>
+        <translation type="obsolete">ユーザーインターフェース/ユーザー辞書の編集</translation>
     </message>
 </context>
 <context>
     <name>N900::UserDictionary::Widget</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/userdictionary/widget.cpp" line="+39"/>
         <source>User Dictionary</source>
-        <translation>ユーザー辞書</translation>
+        <translation type="obsolete">ユーザー辞書</translation>
     </message>
     <message>
-        <location line="+19"/>
         <source>%1 does not support user dictoinary.</source>
-        <translation>%1 はユーザー辞書の編集をサポートしていません。</translation>
+        <translation type="obsolete">%1 はユーザー辞書の編集をサポートしていません。</translation>
     </message>
 </context>
 <context>
     <name>N900IMOff::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/imoff/object.cpp" line="+50"/>
         <source>User Interface/Candidate Window</source>
-        <translation>ユーザーインターフェース/候補ウィンドウ</translation>
+        <translation type="obsolete">ユーザーインターフェース/候補ウィンドウ</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>N900: Candidate List</source>
-        <translation>N900 用の候補ウィンドウ</translation>
+        <translation type="obsolete">N900 用の候補ウィンドウ</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Tasuku Suzuki</source>
-        <translation>鈴木 佑</translation>
+        <translation type="obsolete">鈴木 佑</translation>
     </message>
     <message>
         <source>None</source>
@@ -746,7 +720,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysKeyWidget::Private</name>
     <message>
-        <location filename="../../../src/libs/qt/widgets/qimsyskeywidget.cpp" line="+61"/>
+        <location filename="../../../src/libs/qt4/widgets/qimsyskeywidget.cpp" line="+61"/>
         <source>&amp;Reset</source>
         <translation>リセット(&amp;R)</translation>
     </message>
@@ -763,7 +737,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
         <translation type="obsolete">ja_JP</translation>
     </message>
     <message>
-        <location filename="../../../src/libs/qt/server/qimsysserver.cpp" line="+86"/>
+        <location filename="../../../src/libs/qt4/server/qimsysserver.cpp" line="+86"/>
         <source>en</source>
         <translation>ja</translation>
     </message>
@@ -771,7 +745,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysSettingsWidget</name>
     <message>
-        <location filename="../../../src/libs/qt/plugins/qimsyssettingswidget.ui"/>
+        <location filename="../../../src/libs/qt4/plugins/qimsyssettingswidget.ui"/>
         <source>Icon</source>
         <translation>アイコン</translation>
     </message>
@@ -1092,9 +1066,8 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
         <translation>LGPL の例外事項</translation>
     </message>
     <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/widget.ui"/>
         <source>qimsys</source>
-        <translation>qimsys</translation>
+        <translation type="obsolete">qimsys</translation>
     </message>
     <message>
         <location filename="../../../src/plugins/uis/userdictionary/widget.ui"/>

@@ -1,6 +1,6 @@
 include(../../qimsysplatform.pri)
 TEMPLATE = subdirs
-SUBDIRS = qt
+SUBDIRS = qt4
 
 qimsys_platform_linux {
     !contains(QIMSYS_CONFIG, no-dbus) {

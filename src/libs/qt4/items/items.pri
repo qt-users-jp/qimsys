@@ -8,7 +8,7 @@ SOURCES *= $$ITEMS_SOURCES
 
 contains(QIMSYS_CONFIG, sdk) {
     item_headers.files = $$ITEMS_HEADERS
-    item_headers.path = $$PREFIX/include/qimsys/qt
+    item_headers.path = $$PREFIX/include/qimsys/qt4
 	INSTALLS += item_headers
 }
 

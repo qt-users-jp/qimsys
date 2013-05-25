@@ -7,7 +7,7 @@ SOURCES *= $$DEBUG_SOURCES
 
 contains(QIMSYS_CONFIG, sdk) {
     debug_headers.files = $$DEBUG_HEADERS
-    debug_headers.path = $$PREFIX/include/qimsys/qt
+    debug_headers.path = $$PREFIX/include/qimsys/qt4
     INSTALLS += debug_headers
 }
 

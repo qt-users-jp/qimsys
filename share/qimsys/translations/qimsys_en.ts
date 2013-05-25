@@ -81,46 +81,6 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
     </message>
 </context>
 <context>
-    <name>Dialog</name>
-    <message>
-        <location filename="../../../src/apps/n900/imswitch/dialog.ui"/>
-        <source>Switch Input Method</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location/>
-        <source>&amp;Gtk+:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location/>
-        <source>&amp;Qt:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Dialog::Private</name>
-    <message>
-        <location filename="../../../src/apps/n900/imswitch/dialog.cpp" line="+49"/>
-        <location line="+23"/>
-        <source>System</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Dialog::Private::Private</name>
-    <message>
-        <location line="+129"/>
-        <source>Unset QT_IM_MODULE environment variables, then restart the device.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+8"/>
-        <source>You need to restart the device to apply the change</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>InputContextPlugin</name>
     <message>
         <location filename="../../../src/plugins/clients/qt4immodule/inputcontextplugin.cpp" line="+54"/>
@@ -515,128 +475,9 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
     </message>
 </context>
 <context>
-    <name>N900::About::Object::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/about/object.cpp" line="+60"/>
-        <source>About qimsys</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Tasuku Suzuki</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>User Interface/About</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::About::Widget</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/about/widget.cpp" line="+32"/>
-        <source>About qimsys</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::Dialog::Object::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/object.cpp" line="+58"/>
-        <source>User Interface/System Controler</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>N900: Settings Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Tasuku Suzuki</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::Dialog::Widget::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/widget.cpp" line="+121"/>
-        <source>Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::Keyboard::Object::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/keyboard/object.cpp" line="+55"/>
-        <source>User Interface/Input Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>N900: Virtual Keyboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Tasuku Suzuki</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::UserDictionary::Object::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/userdictionary/object.cpp" line="+60"/>
-        <source>User Dictionary Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Tasuku Suzuki</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
-        <source>User Interface/User Dictionary Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900::UserDictionary::Widget</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/userdictionary/widget.cpp" line="+39"/>
-        <source>User Dictionary</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+19"/>
-        <source>%1 does not support user dictoinary.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>N900IMOff::Object::Private</name>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/imoff/object.cpp" line="+50"/>
-        <source>User Interface/Candidate Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>N900: Candidate List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Tasuku Suzuki</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QimsysKeyWidget::Private</name>
     <message>
-        <location filename="../../../src/libs/qt/widgets/qimsyskeywidget.cpp" line="+61"/>
+        <location filename="../../../src/libs/qt4/widgets/qimsyskeywidget.cpp" line="+61"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -649,7 +490,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysServer::Private</name>
     <message>
-        <location filename="../../../src/libs/qt/server/qimsysserver.cpp" line="+86"/>
+        <location filename="../../../src/libs/qt4/server/qimsysserver.cpp" line="+86"/>
         <source>en</source>
         <translation type="unfinished"></translation>
     </message>
@@ -657,7 +498,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysSettingsWidget</name>
     <message>
-        <location filename="../../../src/libs/qt/plugins/qimsyssettingswidget.ui"/>
+        <location filename="../../../src/libs/qt4/plugins/qimsyssettingswidget.ui"/>
         <source>Icon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -940,11 +781,6 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
     <message>
         <location/>
         <source>LGPL Exception</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/widget.ui"/>
-        <source>qimsys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
