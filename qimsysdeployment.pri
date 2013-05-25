@@ -34,38 +34,33 @@ win32 {
         QMAKE_EXTRA_TARGETS += first copydeploymentfolders
     }
 } else:unix {
-    maemo5 {
-        installPrefix = /opt/usr
-        desktopfile.path = /usr/share/applications/hildon
-    } else {
-        installPrefix = /usr/local
-        desktopfile.path = /usr/share/applications
-        copyCommand =
-        for(deploymentfolder, DEPLOYMENTFOLDERS) {
-            source = $$MAINPROFILEPWD/$$eval($${deploymentfolder}.source)
-            source = $$replace(source, \\, /)
-            macx {
-                target = $$OUT_PWD/$${TARGET}.app/Contents/Resources/$$eval($${deploymentfolder}.target)
-            } else {
-                target = $$OUT_PWD/$$eval($${deploymentfolder}.target)
-            }
-            target = $$replace(target, \\, /)
-            sourcePathSegments = $$split(source, /)
-            targetFullPath = $$target/$$last(sourcePathSegments)
-            !isEqual(source,$$targetFullPath) {
-                !isEmpty(copyCommand):copyCommand += &&
-                copyCommand += $(MKDIR) \"$$target\"
-                copyCommand += && $(COPY_DIR) \"$$source\" \"$$target\"
-            }
+    installPrefix = /usr/local
+    desktopfile.path = /usr/share/applications
+    copyCommand =
+    for(deploymentfolder, DEPLOYMENTFOLDERS) {
+        source = $$MAINPROFILEPWD/$$eval($${deploymentfolder}.source)
+        source = $$replace(source, \\, /)
+        macx {
+            target = $$OUT_PWD/$${TARGET}.app/Contents/Resources/$$eval($${deploymentfolder}.target)
+        } else {
+            target = $$OUT_PWD/$$eval($${deploymentfolder}.target)
         }
-        !isEmpty(copyCommand) {
-            copyCommand = @echo Copying application data... && $$copyCommand
-            copydeploymentfolders.commands = $$copyCommand
-            first.depends = $(first) copydeploymentfolders
-            export(first.depends)
-            export(copydeploymentfolders.commands)
-            QMAKE_EXTRA_TARGETS += first copydeploymentfolders
+        target = $$replace(target, \\, /)
+        sourcePathSegments = $$split(source, /)
+        targetFullPath = $$target/$$last(sourcePathSegments)
+        !isEqual(source,$$targetFullPath) {
+            !isEmpty(copyCommand):copyCommand += &&
+            copyCommand += $(MKDIR) \"$$target\"
+            copyCommand += && $(COPY_DIR) \"$$source\" \"$$target\"
         }
+    }
+    !isEmpty(copyCommand) {
+        copyCommand = @echo Copying application data... && $$copyCommand
+        copydeploymentfolders.commands = $$copyCommand
+        first.depends = $(first) copydeploymentfolders
+        export(first.depends)
+        export(copydeploymentfolders.commands)
+        QMAKE_EXTRA_TARGETS += first copydeploymentfolders
     }
     for(deploymentfolder, DEPLOYMENTFOLDERS) {
         item = item$${deploymentfolder}

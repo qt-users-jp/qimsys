@@ -5,17 +5,12 @@ unix {
     } else {
         CONFIG += qimsys_platform_linux
         DEFINES += QIMSYS_PLATFORM_LINUX
-        maemo* {
-            CONFIG += qimsys_platform_maemo qimsys_platform_embedded
-            DEFINES += QIMSYS_PLATFORM_MAEMO QIMSYS_PLATFORM_EMBEDDED
+        contains(QT_CONFIG, embedded) {
+            CONFIG += qimsys_platform_qws qimsys_platform_embedded
+            DEFINES += QIMSYS_PLATFORM_QWS QIMSYS_PLATFORM_EMBEDDED
         } else {
-            contains(QT_CONFIG, embedded) {
-                CONFIG += qimsys_platform_qws qimsys_platform_embedded
-                DEFINES += QIMSYS_PLATFORM_QWS QIMSYS_PLATFORM_EMBEDDED
-            } else {
-                CONFIG += qimsys_platform_x11 qimsys_platform_desktop
-                DEFINES += QIMSYS_PLATFORM_X11 QIMSYS_PLATFORM_DESKTOP
-            }
+            CONFIG += qimsys_platform_x11 qimsys_platform_desktop
+            DEFINES += QIMSYS_PLATFORM_X11 QIMSYS_PLATFORM_DESKTOP
         }
     }
 } else {

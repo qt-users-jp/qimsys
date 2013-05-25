@@ -1,9 +1,8 @@
 <RCC>
-    <qresource prefix="/japanese/standard/">
+    <qresource prefix="/japanese/standard">
         <file>resources/actiondef.txt</file>
         <file>resources/japanese.png</file>
         <file>resources/keymaps/atok.txt</file>
-        <file>resources/keymaps/maemo.txt</file>
         <file>resources/keymaps/msime.txt</file>
     </qresource>
 </RCC>

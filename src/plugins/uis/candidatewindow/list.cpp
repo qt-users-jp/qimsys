@@ -119,10 +119,8 @@ void List::Private::setupUi()
     q->setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
     connect(QApplication::instance(), SIGNAL(focusChanged(QWidget*, QWidget*)), this, SLOT(focusChanged(QWidget*,QWidget*)));
     q->setFocusPolicy(Qt::NoFocus);
-#ifndef QIMSYS_PLATFORM_MAEMO
     q->setLineWidth(1);
     q->setFrameShape(QFrame::Box);
-#endif
     q->setFrameShadow(QFrame::Plain);
 
     // ui part
@@ -269,11 +267,7 @@ void List::Private::itemsChanged(const QimsysConversionItemList &candidates)
 
     if (!candidates.isEmpty()) {
         int h = qMax(met.height(), ui.listWidget->visualItemRect(ui.listWidget->item(0)).height());
-#ifdef QIMSYS_PLATFORM_MAEMO
-        height = qMin(candidates.length(), 3) * h + q->lineWidth() * 2 + ui.listWidget->lineWidth() * 2;
-#else
         height = qMin(candidates.length(), 10) * h + q->lineWidth() * 2 + ui.listWidget->lineWidth() * 2;
-#endif
         q->setFixedSize(width + 100, height);
         q->update();
     }

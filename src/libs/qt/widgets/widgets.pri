@@ -1,5 +1,4 @@
 include(../../../../qimsys.pri)
-qimsys_platform_maemo: QT += opengl
 
 SOURCES += $$PWD/qimsyskeywidget.cpp $$PWD/qimsyswidget.cpp
 HEADERS += $$PWD/qimsyskeywidget.h $$PWD/qimsyswidget.h

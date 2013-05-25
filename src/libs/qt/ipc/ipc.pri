@@ -17,7 +17,7 @@ IPC_HEADERS = $$PWD/dbus.h \
     $$PWD/qimsyskeyboardmanager.h
 
 !contains(QIMSYS_CONFIG, no-gui) {
-    qimsys_platform_x11 | qimsys_platform_maemo {
+    qimsys_platform_x11 {
         IPC_SOURCES += $$PWD/qimsyskeymanager_x11.cpp
     }
     qimsys_platform_qws {

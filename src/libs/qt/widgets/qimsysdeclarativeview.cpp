@@ -26,10 +26,6 @@
 #include <QtGui/QMoveEvent>
 #include <QtGui/QResizeEvent>
 
-#ifdef QIMSYS_PLATFORM_MAEMO
-#include <QtOpenGL/QGLWidget>
-#include <QtCore/QTimer>
-#endif
 #include <QtDeclarative/QDeclarativeEngine>
 #include <QtDeclarative/QDeclarativeContext>
 
@@ -44,22 +40,12 @@ private:
 private:
     QimsysDeclarativeView *q;
 
-#ifdef QIMSYS_PLATFORM_MAEMO
-public:
-    QTimer timer;
-#endif
 };
 
 QimsysDeclarativeView::Private::Private(QimsysDeclarativeView *parent)
     : q(parent)
 {
     qimsysDebugIn() << parent;
-#ifdef QIMSYS_PLATFORM_MAEMO
-    q->setViewport(new QGLWidget(q));
-    timer.setInterval(15);
-    timer.setSingleShot(true);
-    connect(&timer, SIGNAL(timeout()), q, SLOT(show()));
-#endif
     q->setResizeMode(QDeclarativeView::SizeRootObjectToView);
 
 #ifdef QIMSYS_APPLICATION_DIR_PATH
@@ -140,12 +126,6 @@ void QimsysDeclarativeView::resizeEvent(QResizeEvent *e)
 {
 //    qimsysDebugOn();
     qimsysDebugIn() << e->size() << e->oldSize();
-#ifdef QIMSYS_PLATFORM_MAEMO
-    if ((windowFlags() & Qt::WindowStaysOnTopHint) && !d->timer.isActive() && isVisible()) {
-        hide();
-        d->timer.start();
-    }
-#endif
     QDeclarativeView::resizeEvent(e);
     emit geometryChanged(geometry());
     qimsysDebugOut() << geometry();
@@ -156,12 +136,6 @@ void QimsysDeclarativeView::moveEvent(QMoveEvent *e)
 {
 //    qimsysDebugOn();
     qimsysDebugIn() << e->pos() << e->oldPos();
-#ifdef QIMSYS_PLATFORM_MAEMO
-    if ((windowFlags() & Qt::WindowStaysOnTopHint) && !d->timer.isActive() && isVisible()) {
-        hide();
-        d->timer.start();
-    }
-#endif
     QDeclarativeView::moveEvent(e);
     emit geometryChanged(geometry());
     qimsysDebugOut() << geometry();
@@ -172,11 +146,6 @@ void QimsysDeclarativeView::hideEvent(QHideEvent *e)
 {
 //    qimsysDebugOn();
     qimsysDebugIn() << geometry();
-#ifdef QIMSYS_PLATFORM_MAEMO
-    if (d->timer.isActive()) {
-        d->timer.stop();
-    }
-#endif
     QDeclarativeView::hideEvent(e);
     qimsysDebugOut() << geometry();
 //    qimsysDebugOff();
@@ -186,11 +155,6 @@ void QimsysDeclarativeView::showEvent(QShowEvent *e)
 {
 //    qimsysDebugOn();
     qimsysDebugIn() << geometry();
-#ifdef QIMSYS_PLATFORM_MAEMO
-    if (d->timer.isActive()) {
-        d->timer.stop();
-    }
-#endif
     QDeclarativeView::showEvent(e);
     if (!parent()) raise();
     qimsysDebugOut() << geometry();

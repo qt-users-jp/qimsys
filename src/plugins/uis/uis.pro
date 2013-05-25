@@ -7,7 +7,3 @@ qimsys_platform_desktop {
     !contains(QIMSYS_CONFIG, no-systemtray) SUBDIRS += systemtray
     !contains(QIMSYS_CONFIG, no-toolbar) SUBDIRS += toolbar
 }
-
-qimsys_platform_maemo {
-    SUBDIRS *= n900
-}

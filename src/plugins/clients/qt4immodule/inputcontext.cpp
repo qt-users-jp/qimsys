@@ -65,10 +65,6 @@ public:
     QimsysKeyboardManager *keyboardManager;
 
     QimsysPreeditItem currentItem;
-
-#ifdef QIMSYS_PLATFORM_MAEMO_IGNORE_FIRST_INPUT_PANEL_REQUEST
-    bool ignoreNextInputPanelRequest;
-#endif
 };
 
 InputContext::Private::Private(InputContext *parent)
@@ -80,9 +76,6 @@ InputContext::Private::Private(InputContext *parent)
     , preeditManager(0)
     , keyManager(0)
     , keyboardManager(0)
-#ifdef QIMSYS_PLATFORM_MAEMO_IGNORE_FIRST_INPUT_PANEL_REQUEST
-    , ignoreNextInputPanelRequest(true)
-#endif
 {
     qimsysDebugIn() << parent;
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -208,9 +201,6 @@ void InputContext::Private::setFocusWidget(QWidget *w)
 
         focusWidget = w;
     }
-#ifdef QIMSYS_PLATFORM_MAEMO_IGNORE_FIRST_INPUT_PANEL_REQUEST
-    ignoreNextInputPanelRequest = true;
-#endif
     qimsysDebugOut();
 }
 
@@ -288,11 +278,6 @@ void InputContext::Private::update()
         QRect r = widget->inputMethodQuery(Qt::ImMicroFocus).toRect();
         QPoint topleft = widget->mapToGlobal(QPoint(0, 0));
         r.translate(topleft);
-#ifdef QIMSYS_PLATFORM_MAEMO_IGNORE_FIRST_INPUT_PANEL_REQUEST
-        if (widget->inherits("QTextEdit")) {
-            r.translate(15, 15);
-        }
-#endif
         if (preeditManager) {
             preeditManager->setRect(r);
             preeditManager->setFont(widget->inputMethodQuery(Qt::ImFont).value<QFont>());
@@ -350,11 +335,6 @@ bool InputContext::filterEvent(const QEvent *event)
     case QEvent::RequestSoftwareInputPanel:
         {
             qimsysDebugIn() << event;
-#ifdef QIMSYS_PLATFORM_MAEMO_IGNORE_FIRST_INPUT_PANEL_REQUEST
-            if (d->ignoreNextInputPanelRequest)
-                d->ignoreNextInputPanelRequest = false;
-            else
-#endif
             if (d->keyboardManager)
                 d->keyboardManager->setVisible(true);
             ret = true;
