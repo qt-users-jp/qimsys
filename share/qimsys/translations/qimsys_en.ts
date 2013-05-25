@@ -33,7 +33,7 @@ Copyright &amp;copy; 2009-2011 Tasuku Suzuki &amp;lt;&lt;a href=&quot;mailto:sta
 <context>
     <name>Application::Private</name>
     <message>
-        <location filename="../../../src/apps/qimsys/application.cpp" line="+84"/>
+        <location filename="../../../src/apps/qimsys/application.cpp" line="+87"/>
         <source>en</source>
         <translation type="unfinished"></translation>
     </message>
@@ -46,7 +46,7 @@ Copyright &amp;copy; 2009-2011 Tasuku Suzuki &amp;lt;&lt;a href=&quot;mailto:sta
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+4"/>
         <source>Auto Start</source>
         <translation type="unfinished"></translation>
     </message>
@@ -175,7 +175,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Alphabet::Full::Converter::Private</name>
     <message>
-        <location filename="../../../src/plugins/converters/japanese/alphabet/full/converter.cpp" line="+99"/>
+        <location filename="../../../src/plugins/converters/japanese/alphabet/full/converter.cpp" line="+101"/>
         <source>Alphabet(Full)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -198,7 +198,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Alphabet::Half::Converter::Private</name>
     <message>
-        <location filename="../../../src/plugins/converters/japanese/alphabet/half/converter.cpp" line="+93"/>
+        <location filename="../../../src/plugins/converters/japanese/alphabet/half/converter.cpp" line="+94"/>
         <source>Alphabet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -244,12 +244,12 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Anthy::Engine::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/anthy/engine.cpp" line="+111"/>
+        <location filename="../../../src/plugins/engines/japanese/anthy/engine.cpp" line="+113"/>
         <source>Input/Conversion Engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+5"/>
         <source>Anthy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -310,7 +310,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::GoogleIME::Engine::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/googleime/engine.cpp" line="+104"/>
+        <location filename="../../../src/plugins/engines/japanese/googleime/engine.cpp" line="+108"/>
         <source>Google IME Engine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -333,7 +333,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Hiragana::Full::Converter::Private</name>
     <message>
-        <location filename="../../../src/plugins/converters/japanese/hiragana/full/converter.cpp" line="+83"/>
+        <location filename="../../../src/plugins/converters/japanese/hiragana/full/converter.cpp" line="+84"/>
         <source>Hiragana</source>
         <translation type="unfinished"></translation>
     </message>
@@ -356,7 +356,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Kana::Interpreter::Private</name>
     <message>
-        <location filename="../../../src/plugins/interpreters/japanese/kana/interpreter.cpp" line="+100"/>
+        <location filename="../../../src/plugins/interpreters/japanese/kana/interpreter.cpp" line="+101"/>
         <source>Kana</source>
         <translation type="unfinished"></translation>
     </message>
@@ -379,7 +379,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Katakana::Full::Converter::Private</name>
     <message>
-        <location filename="../../../src/plugins/converters/japanese/katakana/full/converter.cpp" line="+101"/>
+        <location filename="../../../src/plugins/converters/japanese/katakana/full/converter.cpp" line="+102"/>
         <source>Katakana</source>
         <translation type="unfinished"></translation>
     </message>
@@ -402,7 +402,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Katakana::Half::Converter::Private</name>
     <message>
-        <location filename="../../../src/plugins/converters/japanese/katakana/half/converter.cpp" line="+99"/>
+        <location filename="../../../src/plugins/converters/japanese/katakana/half/converter.cpp" line="+100"/>
         <source>Katakana(Half)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -425,7 +425,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Language::Private</name>
     <message>
-        <location filename="../../../src/plugins/languages/japanese/language.cpp" line="+53"/>
+        <location filename="../../../src/plugins/languages/japanese/language.cpp" line="+54"/>
         <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
@@ -448,7 +448,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Romaji::Interpreter::Private</name>
     <message>
-        <location filename="../../../src/plugins/interpreters/japanese/romaji/interpreter.cpp" line="+100"/>
+        <location filename="../../../src/plugins/interpreters/japanese/romaji/interpreter.cpp" line="+101"/>
         <source>Romaji</source>
         <translation type="unfinished"></translation>
     </message>
@@ -471,7 +471,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::SocialIME::Engine::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/socialime/engine.cpp" line="+123"/>
+        <location filename="../../../src/plugins/engines/japanese/socialime/engine.cpp" line="+126"/>
         <source>Social IME Engine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -494,7 +494,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Standard::InputMethod::Private</name>
     <message>
-        <location filename="../../../src/plugins/inputmethods/japanese/standard/inputmethod.cpp" line="+118"/>
+        <location filename="../../../src/plugins/inputmethods/japanese/standard/inputmethod.cpp" line="+128"/>
         <source>Japanese(Standard)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -517,7 +517,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::About::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/about/object.cpp" line="+59"/>
+        <location filename="../../../src/plugins/uis/n900/about/object.cpp" line="+60"/>
         <source>About qimsys</source>
         <translation type="unfinished"></translation>
     </message>
@@ -543,7 +543,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::Dialog::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/dialog/object.cpp" line="+57"/>
+        <location filename="../../../src/plugins/uis/n900/dialog/object.cpp" line="+58"/>
         <source>User Interface/System Controler</source>
         <translation type="unfinished"></translation>
     </message>
@@ -587,7 +587,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900::UserDictionary::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/userdictionary/object.cpp" line="+59"/>
+        <location filename="../../../src/plugins/uis/n900/userdictionary/object.cpp" line="+60"/>
         <source>User Dictionary Editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -618,7 +618,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>N900IMOff::Object::Private</name>
     <message>
-        <location filename="../../../src/plugins/uis/n900/imoff/object.cpp" line="+48"/>
+        <location filename="../../../src/plugins/uis/n900/imoff/object.cpp" line="+50"/>
         <source>User Interface/Candidate Window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -814,7 +814,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Display Language</source>
         <translation type="unfinished"></translation>
     </message>

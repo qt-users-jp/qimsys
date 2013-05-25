@@ -14,7 +14,3 @@ SOURCES += engine.cpp \
     RESOURCES += socialime.qrc
     FORMS += settings.ui
 }
-
-qimsys_platform_symbian {
-    TARGET.CAPABILITY = "LocalServices NetworkServices UserEnvironment ReadUserData WriteUserData"
-}

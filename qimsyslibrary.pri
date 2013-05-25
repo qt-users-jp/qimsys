@@ -25,12 +25,4 @@ qimsys_platform_linux {
     INSTALLS += target
 }
 
-qimsys_platform_symbian {
-    MMP_RULES += EXPORTUNFROZEN
-    TARGET.EPOCALLOWDLLDATA = 1
-    addFiles.sources = $${TARGET}.dll
-    addFiles.path = !:/sys/bin
-    DEPLOYMENT += addFiles
-}
-
 } # QIMSYSLIBRARY_PRI

@@ -7,7 +7,3 @@ SOURCES += object.cpp \
 
 OTHER_FILES += \
     inputmethodmanager.dox
-
-qimsys_platform_symbian {
-    TARGET.CAPABILITY = "ReadUserData WriteUserData"
-}

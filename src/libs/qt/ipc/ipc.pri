@@ -29,9 +29,6 @@ IPC_HEADERS = $$PWD/dbus.h \
     qimsys_platform_win32 {
         IPC_SOURCES += $$PWD/qimsyskeymanager_win.cpp
     }
-    qimsys_platform_symbian {
-        IPC_SOURCES += $$PWD/qimsyskeymanager_symbian.cpp
-    }
 }
 
 INCLUDEPATH += $$PWD

@@ -6,7 +6,3 @@ SOURCES += plugin.cpp inputmethod.cpp keyactions.cpp
 
 RESOURCES += \
     standard.qrc
-
-qimsys_platform_symbian {
-    TARGET.CAPABILITY = "ReadUserData WriteUserData"
-}

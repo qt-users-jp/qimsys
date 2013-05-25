@@ -18,8 +18,4 @@ qimsys_platform_linux {
     INSTALLS += target
 }
 
-qimsys_platform_symbian {
-    TARGET.EPOCHEAPSIZE = 0x20000 0x2000000
-}
-
 } # QIMSYSAPP_PRI

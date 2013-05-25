@@ -12,7 +12,3 @@ SOURCES += object.cpp \
     RESOURCES += language.qrc
     FORMS += settings.ui
 }
-
-qimsys_platform_symbian {
-    TARGET.CAPABILITY = "ReadUserData WriteUserData"
-}

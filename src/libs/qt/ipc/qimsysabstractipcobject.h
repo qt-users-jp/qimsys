@@ -103,45 +103,6 @@ private:
                    )
 #endif // QIMSYS_NO_DBUS
 
-#ifdef QIMSYS_PLATFORM_SYMBIAN
-#define getProp(C, T, V, ARGS...) \
-    T C::V() const \
-    {\
-        T ret; \
-        switch(type()) { \
-        case Server: \
-            ret = d->V; \
-            break; \
-        case Client: \
-            if (proxy()) \
-                ret = proxy()->property(#V).value<T>(); \
-            else \
-                qimsysWarning() << this << "is not initialized."; \
-            break; \
-        } \
-        ARGS \
-        return ret; \
-    }
-
-#define setProp(C, T, v, V, ARGS...) \
-    void C::V(T v) \
-    { \
-        ARGS \
-        switch(type()) { \
-        case Server: \
-            if(d->v == v) break; \
-            d->v = v; \
-            emit v##Changed(d->v); \
-            break; \
-        case Client: \
-            if (proxy()) \
-                proxy()->setProperty(#v, qVariantFromValue(v)); \
-            else \
-                qimsysWarning() << this << "is not initialized."; \
-            break; \
-        } \
-    }
-#else // QIMSYS_PLATFORM_SYMBIAN
 #define getProp(C, T, V, ...) \
     T C::V() const \
     {\
@@ -181,6 +142,5 @@ private:
         } \
         qimsysDebugOut(); \
     }
-#endif // QIMSYS_PLATFORM_SYMBIAN
 
 #endif // QIMSYSABSTRACTIPCOBJECT_H
