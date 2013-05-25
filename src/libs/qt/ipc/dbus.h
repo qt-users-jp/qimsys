@@ -23,21 +23,6 @@
 
 #include "qimsysglobal.h"
 
-#ifdef QIMSYS_PLATFORM_SYMBIAN
-#define DATASTREAM_IN(T, ARGS...) \
-    QIMSYS_EXPORT inline QDataStream &operator>>(QDataStream &s, T) \
-    { \
-        ARGS \
-        return s; \
-    }
-
-#define DATASTREAM_OUT(T, ARGS...) \
-    QIMSYS_EXPORT inline QDataStream &operator<<(QDataStream &s, T) \
-    { \
-        ARGS \
-        return s; \
-    }
-#else // QIMSYS_PLATFORM_SYMBIAN
 #define DATASTREAM_IN(T, ...) \
     QIMSYS_EXPORT inline QDataStream &operator>>(QDataStream &s, T) \
     { \
@@ -51,7 +36,6 @@
         __VA_ARGS__ \
         return s; \
     }
-#endif // QIMSYS_PLATFORM_SYMBIAN
 
 #ifndef QIMSYS_NO_DBUS
 #include <QDBusArgument>

@@ -34,7 +34,6 @@ QIMSYS_VERSION = 0.2.0
 
 qimsys_platform_mac: QIMSYS_CONFIG *= no-dbus
 qimsys_platform_win32: QIMSYS_CONFIG *= no-dbus
-qimsys_platform_symbian: QIMSYS_CONFIG *= no-dbus no-translation
 
 contains(QIMSYS_CONFIG, no-gui): DEFINES += QIMSYS_NO_GUI
 contains(QIMSYS_CONFIG, no-dbus): DEFINES += QIMSYS_NO_DBUS
@@ -74,20 +73,6 @@ qimsys_platform_linux {
     !isEqual(QIMSYS_SOURCE_TREE, $$QIMSYS_BUILD_TREE):copydata = 1
 }
 
-qimsys_platform_symbian {
-    load(data_caging_paths)
-
-    QIMSYS_APP_TARGET = qimsys
-    QIMSYS_TARGET_PATH =
-    QIMSYS_APP_PATH =
-    QIMSYS_LIBRARY_PATH =
-    QIMSYS_PLUGIN_PATH = /resource/$$QIMSYS_APP_TARGET/plugins
-    QIMSYS_IMPORTS_PATH = /resource/$$QIMSYS_APP_TARGET/imports
-    QIMSYS_DATA_PATH = share/$$QIMSYS_APP_TARGET
-    QIMSYS_TRANSLATIONS_PATH = $$QIMSYS_DATA_PATH/translations
-    !isEqual(QIMSYS_SOURCE_TREE, $$QIMSYS_BUILD_TREE):copydata = 1
-}
-
 qimsys_platform_windows {
     QIMSYS_APP_TARGET = qimsys
     QIMSYS_TARGET_PATH =
@@ -100,33 +85,22 @@ qimsys_platform_windows {
     !isEqual(QIMSYS_SOURCE_TREE, $$QIMSYS_BUILD_TREE):copydata = 1
 }
 
-!qimsys_platform_symbian {
-    # this way doesn't work on symbian
-    # defined in qimsysglobal.h instead
-    DEFINES += QIMSYS_VERSION=\\\"$$QIMSYS_VERSION\\\"
-    DEFINES += QIMSYS_APP_PATH=\\\"$$QIMSYS_APP_PATH\\\"
-    DEFINES += QIMSYS_LIBRARY_PATH=\\\"$$QIMSYS_LIBRARY_PATH\\\"
-    DEFINES += QIMSYS_PLUGIN_PATH=\\\"$$QIMSYS_PLUGIN_PATH\\\"
-    DEFINES += QIMSYS_IMPORTS_PATH=\\\"$$QIMSYS_IMPORTS_PATH\\\"
-    DEFINES += QIMSYS_DATA_PATH=\\\"$$QIMSYS_DATA_PATH\\\"
-    DEFINES += QIMSYS_TRANSLATIONS_PATH=\\\"$$QIMSYS_TRANSLATIONS_PATH\\\"
-}
+DEFINES += QIMSYS_VERSION=\\\"$$QIMSYS_VERSION\\\"
+DEFINES += QIMSYS_APP_PATH=\\\"$$QIMSYS_APP_PATH\\\"
+DEFINES += QIMSYS_LIBRARY_PATH=\\\"$$QIMSYS_LIBRARY_PATH\\\"
+DEFINES += QIMSYS_PLUGIN_PATH=\\\"$$QIMSYS_PLUGIN_PATH\\\"
+DEFINES += QIMSYS_IMPORTS_PATH=\\\"$$QIMSYS_IMPORTS_PATH\\\"
+DEFINES += QIMSYS_DATA_PATH=\\\"$$QIMSYS_DATA_PATH\\\"
+DEFINES += QIMSYS_TRANSLATIONS_PATH=\\\"$$QIMSYS_TRANSLATIONS_PATH\\\"
 
-symbian {
-    OBJECTS_DIR = obj
-    MOC_DIR = moc
-    RCC_DIR = rcc
-    UI_DIR = uic
-} else {
-    CONFIG(debug, debug|release):OBJECTS_DIR = $${OUT_PWD}/.obj/debug-shared
-    CONFIG(release, debug|release):OBJECTS_DIR = $${OUT_PWD}/.obj/release-shared
+CONFIG(debug, debug|release):OBJECTS_DIR = $${OUT_PWD}/.obj/debug-shared
+CONFIG(release, debug|release):OBJECTS_DIR = $${OUT_PWD}/.obj/release-shared
 
-    CONFIG(debug, debug|release):MOC_DIR = $${OUT_PWD}/.moc/debug-shared
-    CONFIG(release, debug|release):MOC_DIR = $${OUT_PWD}/.moc/release-shared
+CONFIG(debug, debug|release):MOC_DIR = $${OUT_PWD}/.moc/debug-shared
+CONFIG(release, debug|release):MOC_DIR = $${OUT_PWD}/.moc/release-shared
 
-    RCC_DIR = $${OUT_PWD}/.rcc
-    UI_DIR = $${OUT_PWD}/.uic
-}
+RCC_DIR = $${OUT_PWD}/.rcc
+UI_DIR = $${OUT_PWD}/.uic
 
 defineTest(versionCheck) {
     major = $$1

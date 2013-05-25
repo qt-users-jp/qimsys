@@ -95,8 +95,6 @@ private:
         pluginFilter << QLatin1String("*.dylib");
 #elif defined(QIMSYS_PLATFORM_LINUX)
         pluginFilter << QLatin1String("*.so");
-#elif defined(QIMSYS_PLATFORM_SYMBIAN)
-        pluginFilter << QLatin1String("*.qtplugin");
 #else
         pluginFilter << QLatin1String("*");
 #endif

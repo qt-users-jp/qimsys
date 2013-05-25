@@ -17,11 +17,6 @@ contains(QIMSYS_CONFIG, sdk) {
     INSTALLS += lib_headers
 }
 
-qimsys_platform_symbian {
-	TARGET.UID3 = 0xE4C161A8
-	TARGET.CAPABILITY = "ReadUserData WriteUserData"
-}
-
 include(debug/debug.pri)
 include(ipc/ipc.pri)
 include(plugins/plugins.pri)

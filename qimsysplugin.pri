@@ -23,11 +23,4 @@ INSTALLS += target
 QMAKE_RPATHDIR += \$\$ORIGIN/../../../$$QIMSYS_LIBRARY_PATH
 include(./qimsysrpath.pri)
 
-qimsys_platform_symbian {
-    TARGET.EPOCALLOWDLLDATA = 1
-    addFiles.sources = $${TARGET}.dll
-    addFiles.path = $$QIMSYS_PLUGIN_PATH
-    DEPLOYMENT += addFiles
-}
-
 } # QIMSYSPLUGIN_PRI

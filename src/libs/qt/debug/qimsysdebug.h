@@ -29,7 +29,7 @@ extern QIMSYS_EXPORT int QimsysLogLevel;
 
 #define qimsysDebugOn() QimsysLogEnabled++
 #define qimsysDebugOff() QimsysLogEnabled--
-#if defined(Q_CC_GNU) && !defined(QIMSYS_PLATFORM_SYMBIAN)
+#if defined(Q_CC_GNU)
 #define qimsysDebugIn() if(QimsysLogEnabled <= 0){} else qDebug() << QString(2*QimsysLogLevel++, ' ') + QString("+ %1").arg(__PRETTY_FUNCTION__)
 #define qimsysDebugOut() if(QimsysLogEnabled <= 0){} else qDebug() << QString(2*--QimsysLogLevel, ' ') + QString("- %1").arg(__PRETTY_FUNCTION__)
 #define qimsysDebug() if(QimsysLogEnabled <= 0){} else qDebug() << QString(2*QimsysLogLevel, ' ') + QString(" %1 %2>").arg(__PRETTY_FUNCTION__).arg(__LINE__)

@@ -7,7 +7,3 @@ HEADERS += engine.h \
 SOURCES += engine.cpp \
     plugin.cpp
 RESOURCES += googleime.qrc
-
-qimsys_platform_symbian {
-    TARGET.CAPABILITY = "LocalServices NetworkServices UserEnvironment ReadUserData WriteUserData"
-}
