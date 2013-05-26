@@ -18,9 +18,9 @@ contains(QIMSYS_CONFIG, sdk) {
 }
 
 include(debug/debug.pri)
+include(items/items.pri)
 include(ipc/ipc.pri)
 include(plugins/plugins.pri)
-include(items/items.pri)
 include(utils/utils.pri)
 include(server/server.pri)
 !contains(QIMSYS_CONFIG, no-gui) {
