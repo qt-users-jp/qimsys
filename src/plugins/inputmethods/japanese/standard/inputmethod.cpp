@@ -436,6 +436,7 @@ void InputMethod::Private::keyReleased(const QString &text, int keycode, int mod
         keyManager->accept();
         acceptedKeyCount--;
     }
+    qimsysDebugOut();
 }
 
 void InputMethod::Private::currentIndexChanged(int currentIndex)
