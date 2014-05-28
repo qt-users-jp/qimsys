@@ -135,7 +135,6 @@ static void widgetAndWindowFor(const QObject *object, qulonglong *widgetId, qulo
 void InputContext::Private::setFocusObject(QObject *o)
 {
     if (focusObject == o) return;
-    qDebug() << o;
     qimsysDebugIn() << o;
 
     qulonglong nextWindow = 0;
