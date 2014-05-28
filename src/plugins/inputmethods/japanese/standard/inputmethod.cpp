@@ -361,21 +361,20 @@ void InputMethod::Private::keyPressed(const QString &text, int keycode, int modi
 {
     if (keyManager->isAccepted()) return;
 
-//    qimsysDebugOn();
     qimsysDebugIn() << text << keycode << modifiers << autoRepeat;
 
     int key = keycode;
     acceptedKeyCount = 1;
     if (modifiers & Qt::ControlModifier) {
-        key += Qt::CTRL;
+        key |= Qt::CTRL;
         acceptedKeyCount++;
     }
     if (modifiers & Qt::AltModifier) {
-        key += Qt::ALT;
+        key |= Qt::ALT;
         acceptedKeyCount++;
     }
     if (modifiers & Qt::ShiftModifier) {
-        key += Qt::SHIFT;
+        key |= Qt::SHIFT;
         acceptedKeyCount++;
     }
 
@@ -384,36 +383,52 @@ void InputMethod::Private::keyPressed(const QString &text, int keycode, int modi
         keyActions->trigger(seq);
         keyManager->accept();
         // reset
-    } else if (!text.isEmpty()){
-        const QChar &ch = text.at(0);
-        qimsysDebug() << ch;
-        uint state = inputMethodManager->state();
-        if (ch.isPrint()) {
-            switch (state) {
-            case Direct:
-                    break;
-            case Convert:
-            case Select:
-                    inputMethodManager->execute(QLatin1String("Commit all"));
-                    fallthrough;
-            case Empty:
-                if (modifiers & Qt::ControlModifier || modifiers & Qt::AltModifier) break;
-            case Input:
-                    // clear selection first
-                    inputMethodManager->execute(QLatin1String("Clear Selection"));
-                    inputMethodManager->setState(Input);
-
-                    preeditManager->insert(ch);
-                    keyManager->accept();
-            }
-        } else {
-            switch (state) {
-            case Direct:
-            case Empty:
+    } else {
+        QChar ch(0);
+        if (text.isEmpty()) {
+            switch (keycode) {
+            case Qt::Key_Shift:
+            case Qt::Key_Control:
+            case Qt::Key_Meta:
+            case Qt::Key_Alt:
                 break;
             default:
-                keyManager->accept();
+                ch = QChar(keycode);
                 break;
+            }
+        } else {
+            ch = text.at(0);
+        }
+        qimsysDebug() << ch << text << key << Qt::SHIFT;
+        if (!ch.isNull()) {
+            uint state = inputMethodManager->state();
+            if (ch.isPrint()) {
+                switch (state) {
+                case Direct:
+                        break;
+                case Convert:
+                case Select:
+                        inputMethodManager->execute(QLatin1String("Commit all"));
+                        fallthrough;
+                case Empty:
+                    if (modifiers & Qt::ControlModifier || modifiers & Qt::AltModifier) break;
+                case Input:
+                        // clear selection first
+                        inputMethodManager->execute(QLatin1String("Clear Selection"));
+                        inputMethodManager->setState(Input);
+
+                        preeditManager->insert(ch);
+                        keyManager->accept();
+                }
+            } else {
+                switch (state) {
+                case Direct:
+                case Empty:
+                    break;
+                default:
+                    keyManager->accept();
+                    break;
+                }
             }
         }
     }
@@ -422,7 +437,6 @@ void InputMethod::Private::keyPressed(const QString &text, int keycode, int modi
         acceptedKeyCount = 0;
     }
     qimsysDebugOut() << keyManager->isAccepted();
-//    qimsysDebugOff();
 }
 
 void InputMethod::Private::keyReleased(const QString &text, int keycode, int modifiers, bool autoRepeat)
