@@ -35,21 +35,12 @@ extern "C"
 QIMSYS_EXPORT int QimsysLogLevelCounter;
 QIMSYS_EXPORT int QimsysLogEnabled;
 QIMSYS_EXPORT int QimsysLogLevel;
-QIMSYS_EXPORT FILE *QimsysLogFile;
 
-#if 0
-    #define qimsys_debug_on() QimsysLogEnabled++;
-    #define qimsys_debug_off() QimsysLogEnabled--
-    #define qimsys_debug_in() if(QimsysLogEnabled <= 0){} else g_print("+ %s\n", __PRETTY_FUNCTION__)
-    #define qimsys_debug_out() if(QimsysLogEnabled <= 0){} else g_print("- %s\n", __PRETTY_FUNCTION__)
-    #define qimsys_debug(...) if(QimsysLogEnabled <= 0){} else g_print(__VA_ARGS__)
-#else
-    #define qimsys_debug_on() if (++QimsysLogEnabled == 1) { QimsysLogFile = fopen("/home/user/qimsys.log", "a"); }
-    #define qimsys_debug_off() if (--QimsysLogEnabled == 0) { fclose(QimsysLogFile); QimsysLogFile = 0; }
-    #define qimsys_debug_in() qimsys_debug("+ %s\n", __PRETTY_FUNCTION__); QimsysLogLevel++;
-    #define qimsys_debug_out() QimsysLogLevel--; qimsys_debug("- %s\n", __PRETTY_FUNCTION__);
-    #define qimsys_debug(fmt, ...) if(!QimsysLogFile) {} else { for(QimsysLogLevelCounter = 0; QimsysLogLevelCounter < QimsysLogLevel * 2; QimsysLogLevelCounter++) fprintf(QimsysLogFile, " "); fprintf(QimsysLogFile, fmt, __VA_ARGS__); fflush(QimsysLogFile); }
-#endif
+#define qimsys_debug_on() QimsysLogEnabled++;
+#define qimsys_debug_off() QimsysLogEnabled--
+#define qimsys_debug_in() if(QimsysLogEnabled <= 0){} else g_print("+ %s\n", __PRETTY_FUNCTION__)
+#define qimsys_debug_out() if(QimsysLogEnabled <= 0){} else g_print("- %s\n", __PRETTY_FUNCTION__)
+#define qimsys_debug(...) if(QimsysLogEnabled <= 0){} else g_print(__VA_ARGS__)
 
 #ifdef __cplusplus
 }
