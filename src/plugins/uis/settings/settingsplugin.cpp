@@ -32,5 +32,3 @@ QimsysAbstractPluginObject *SettingsPlugin::createObject(QObject *parent)
 {
     return new SettingsObject(parent);
 }
-
-Q_EXPORT_PLUGIN2(settingsPlugin, SettingsPlugin)

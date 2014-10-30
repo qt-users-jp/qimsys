@@ -9,7 +9,7 @@ class Configure
         @qmake = `which qmake`.chomp
         @qmake_default = @qmake.dup
         @install_root = '/usr/local'
-        @qt_im_module = `qmake -query QT_INSTALL_PLUGINS`.chomp + "/inputmethods"
+        @qt_im_module = `qmake -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
         @qt_im_module_default = @qt_im_module.dup
         @gtk_im_module = `pkg-config --variable=libdir gtk+-2.0`.chomp + "/gtk-2.0/" + `pkg-config --variable=gtk_binary_version gtk+-2.0`.chomp + "/immodules"
         @config = []
@@ -42,7 +42,7 @@ class Configure
 
     def exec()
         if @qmake != @qmake_default && @qt_im_module == @qt_im_module_default
-            @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/inputmethods"
+            @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
         end
 
         cmd = []

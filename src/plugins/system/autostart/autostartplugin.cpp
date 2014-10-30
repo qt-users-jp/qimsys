@@ -32,5 +32,3 @@ QimsysAbstractPluginObject *AutoStartPlugin::createObject(QObject *parent)
 {
     return new AutoStartObject(parent);
 }
-
-Q_EXPORT_PLUGIN2(autoStartIconPlugin, AutoStartPlugin)

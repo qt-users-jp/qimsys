@@ -28,7 +28,6 @@
 #include <qimsyscandidatemanager.h>
 #include <qimsysdynamictranslator.h>
 
-#include <QApplication>
 #include <QIcon>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -304,7 +303,7 @@ void Engine::Private::readConversion()
             QRegExp charset("charset=([A-Za-z0-9\\-_]+)");
             if (charset.indexIn(reply->rawHeader(headerName))) {
                 qimsysDebug() << headerName << reply->rawHeader(headerName) << charset.cap(1);
-                textCodec = QTextCodec::codecForName(charset.cap(1).toAscii());
+                textCodec = QTextCodec::codecForName(charset.cap(1).toUtf8());
             }
         }
     }

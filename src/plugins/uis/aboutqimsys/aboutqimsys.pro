@@ -1,5 +1,7 @@
 include(../../../../qimsysplugin.pri)
 
+QT += widgets
+
 HEADERS += widget.h \
     plugin.h \
     object.h

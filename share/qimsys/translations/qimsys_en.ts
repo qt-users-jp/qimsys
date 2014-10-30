@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<TS version="2.1" language="en_US">
 <context>
     <name>AboutQimsys::Object::Private</name>
     <message>
@@ -181,7 +181,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::Anthy::DictionaryModel::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/anthy/dictionarymodel.cpp" line="+275"/>
+        <location filename="../../../src/plugins/engines/japanese/anthy/dictionarymodel.cpp" line="+268"/>
         <source>Sound</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,7 +270,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::GoogleIME::Engine::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/googleime/engine.cpp" line="+108"/>
+        <location filename="../../../src/plugins/engines/japanese/googleime/engine.cpp" line="+107"/>
         <source>Google IME Engine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -431,7 +431,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>Japanese::SocialIME::Engine::Private</name>
     <message>
-        <location filename="../../../src/plugins/engines/japanese/socialime/engine.cpp" line="+126"/>
+        <location filename="../../../src/plugins/engines/japanese/socialime/engine.cpp" line="+127"/>
         <source>Social IME Engine</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,7 +477,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysKeyWidget::Private</name>
     <message>
-        <location filename="../../../src/libs/qt4/widgets/qimsyskeywidget.cpp" line="+61"/>
+        <location filename="../../../src/libs/qt/widgets/qimsyskeywidget.cpp" line="+61"/>
         <source>&amp;Reset</source>
         <translation type="unfinished"></translation>
     </message>
@@ -490,7 +490,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysServer::Private</name>
     <message>
-        <location filename="../../../src/libs/qt4/server/qimsysserver.cpp" line="+86"/>
+        <location filename="../../../src/libs/qt/server/qimsysserver.cpp" line="+86"/>
         <source>en</source>
         <translation type="unfinished"></translation>
     </message>
@@ -498,7 +498,7 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
 <context>
     <name>QimsysSettingsWidget</name>
     <message>
-        <location filename="../../../src/libs/qt4/plugins/qimsyssettingswidget.ui"/>
+        <location filename="../../../src/libs/qt/plugins/qimsyssettingswidget.ui"/>
         <source>Icon</source>
         <translation type="unfinished"></translation>
     </message>
@@ -667,14 +667,6 @@ This plugin creates ~/.config/autostart/qimsys.desktop to start qimsys at login.
     <message>
         <location line="+1"/>
         <source>This plugin is used to change display language.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>System::Language::Settings::Private</name>
-    <message>
-        <location filename="../../../src/plugins/system/language/settings.cpp" line="+81"/>
-        <source>English</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

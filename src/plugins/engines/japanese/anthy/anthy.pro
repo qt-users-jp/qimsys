@@ -13,6 +13,7 @@ SOURCES += plugin.cpp engine.cpp \
     dictionary.cpp
 
 !contains(QIMSYS_CONFIG, no-gui) {
+    QT += widgets
     HEADERS += wordeditor.h settings.h
     SOURCES += wordeditor.cpp settings.cpp
 

@@ -32,13 +32,25 @@
 #include <qimsyskeyboardmanager.h>
 #include <qimsyskeysequence.h>
 
-#include <QAction>
 #include <QSignalMapper>
 #include <QFile>
 #include <QTextStream>
 
 using namespace Japanese;
 using namespace Japanese::Standard;
+
+class Action : public QObject
+{
+    Q_OBJECT
+public:
+    Action(QObject *parent = 0) : QObject(parent) {}
+
+public slots:
+    void trigger() { emit triggered(); }
+
+signals:
+    void triggered();
+};
 
 class KeyActions::Private : private QObject
 {
@@ -89,7 +101,7 @@ private:
     QimsysKeyboardManager keyboardManager;
 
     State currentState;
-    QMap<QString, QAction*> actionMap;
+    QMap<QString, Action*> actionMap;
     QMap<uint, QMap<QimsysKeySequence, QString> > keyMap;
 
     QimsysPreeditItem cache;
@@ -181,7 +193,7 @@ void KeyActions::Private::init()
 {
     // toggle keyboard
     {
-        QAction *action = new QAction(this);
+        Action *action = new Action(this);
         connect(action, SIGNAL(triggered()), this, SLOT(toggleKeyboard()));
         actionMap["Toggle keyboard"] = action;
     }
@@ -192,14 +204,14 @@ void KeyActions::Private::init()
         connect(setEnabled, SIGNAL(mapped(int)), this, SLOT(setEnabled(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setEnabled, SLOT(map()));
             setEnabled->setMapping(action, true);
             actionMap["Turn on qimsys"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setEnabled, SLOT(map()));
             setEnabled->setMapping(action, false);
             actionMap["Turn off qimsys"] = action;
@@ -212,28 +224,28 @@ void KeyActions::Private::init()
         connect(moveCursor, SIGNAL(mapped(int)), this, SLOT(moveCursor(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), moveCursor, SLOT(map()));
             moveCursor->setMapping(action, -2);
             actionMap["Move cursor first"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), moveCursor, SLOT(map()));
             moveCursor->setMapping(action, -1);
             actionMap["Move cursor previous"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), moveCursor, SLOT(map()));
             moveCursor->setMapping(action, +1);
             actionMap["Move cursor next"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), moveCursor, SLOT(map()));
             moveCursor->setMapping(action, +2);
             actionMap["Move cursor last"] = action;
@@ -246,14 +258,14 @@ void KeyActions::Private::init()
         connect(changeSelectionLength, SIGNAL(mapped(int)), this, SLOT(changeSelectionLength(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), changeSelectionLength, SLOT(map()));
             changeSelectionLength->setMapping(action, -1);
             actionMap["Change selection length previous"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), changeSelectionLength, SLOT(map()));
             changeSelectionLength->setMapping(action, +1);
             actionMap["Change selection length next"] = action;
@@ -266,14 +278,14 @@ void KeyActions::Private::init()
         connect(remove, SIGNAL(mapped(int)), this, SLOT(remove(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), remove, SLOT(map()));
             remove->setMapping(action, -1);
             actionMap["Remove previous"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), remove, SLOT(map()));
             remove->setMapping(action, +1);
             actionMap["Remove next"] = action;
@@ -282,7 +294,7 @@ void KeyActions::Private::init()
 
     // clear selection
     {
-        QAction *action = new QAction(this);
+        Action *action = new Action(this);
         connect(action, SIGNAL(triggered()), this, SLOT(clearSelection()));
         actionMap["Clear Selection"] = action;
     }
@@ -293,14 +305,14 @@ void KeyActions::Private::init()
         connect(commit, SIGNAL(mapped(int)), this, SLOT(commit(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), commit, SLOT(map()));
             commit->setMapping(action, true);
             actionMap["Commit all"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), commit, SLOT(map()));
             commit->setMapping(action, false);
             actionMap["Commit one"] = action;
@@ -309,7 +321,7 @@ void KeyActions::Private::init()
 
     // convert
     {
-        QAction *action = new QAction(this);
+        Action *action = new Action(this);
         connect(action, SIGNAL(triggered()), this, SLOT(convert()));
         actionMap["Convert"] = action;
     }
@@ -320,14 +332,14 @@ void KeyActions::Private::init()
         connect(resizeSegment, SIGNAL(mapped(int)), this, SLOT(resizeSegment(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), resizeSegment, SLOT(map()));
             resizeSegment->setMapping(action, -1);
             actionMap["Resize segment shorter"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), resizeSegment, SLOT(map()));
             resizeSegment->setMapping(action, +1);
             actionMap["Resize segment longer"] = action;
@@ -340,14 +352,14 @@ void KeyActions::Private::init()
         connect(selectCandidate, SIGNAL(mapped(int)), this, SLOT(selectCandidate(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), selectCandidate, SLOT(map()));
             selectCandidate->setMapping(action, -1);
             actionMap["Select previous candidate"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), selectCandidate, SLOT(map()));
             selectCandidate->setMapping(action, +1);
             actionMap["Select next candidate"] = action;
@@ -356,14 +368,14 @@ void KeyActions::Private::init()
 
     // cancel
     {
-        QAction *action = new QAction(this);
+        Action *action = new Action(this);
         connect(action, SIGNAL(triggered()), this, SLOT(cancel()));
         actionMap["Cancel"] = action;
     }
 
     // clear
     {
-        QAction *action = new QAction(this);
+        Action *action = new Action(this);
         connect(action, SIGNAL(triggered()), this, SLOT(clear()));
         actionMap["Clear"] = action;
     }
@@ -374,14 +386,14 @@ void KeyActions::Private::init()
         connect(setCharacterMode, SIGNAL(mapped(int)), this, SLOT(setCharacterMode(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setCharacterMode, SLOT(map()));
             setCharacterMode->setMapping(action, -1);
             actionMap["Previous character mode"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setCharacterMode, SLOT(map()));
             setCharacterMode->setMapping(action, +1);
             actionMap["Next character mode"] = action;
@@ -394,14 +406,14 @@ void KeyActions::Private::init()
         connect(setTypingMode, SIGNAL(mapped(int)), this, SLOT(setTypingMode(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setTypingMode, SLOT(map()));
             setTypingMode->setMapping(action, -1);
             actionMap["Previous typing mode"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), setTypingMode, SLOT(map()));
             setTypingMode->setMapping(action, +1);
             actionMap["Next typing mode"] = action;
@@ -415,7 +427,7 @@ void KeyActions::Private::init()
 
         QList<QimsysConverter *> converters = QimsysPluginManager::objects<QimsysConverter>();
         foreach(QimsysConverter *converter, converters) {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), convertTo, SLOT(map()));
             convertTo->setMapping(action, converter->identifier());
             actionMap[QString("Convert to %1").arg(converter->identifier())] = action;
@@ -428,28 +440,28 @@ void KeyActions::Private::init()
         connect(inputSpace, SIGNAL(mapped(int)), this, SLOT(inputSpace(int)));
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), inputSpace, SLOT(map()));
             inputSpace->setMapping(action, 0);
             actionMap["Input space"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), inputSpace, SLOT(map()));
             inputSpace->setMapping(action, 1);
             actionMap["Input Halfwidth space"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), inputSpace, SLOT(map()));
             inputSpace->setMapping(action, 2);
             actionMap["Input Fullwidth space"] = action;
         }
 
         {
-            QAction *action = new QAction(this);
+            Action *action = new Action(this);
             connect(action, SIGNAL(triggered()), inputSpace, SLOT(map()));
             inputSpace->setMapping(action, -1);
             actionMap["Input the other width space"] = action;
