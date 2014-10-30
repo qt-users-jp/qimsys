@@ -39,5 +39,3 @@ QimsysAbstractPluginObject *Plugin::createObject(QObject *parent)
     }
     return ret;
 }
-
-Q_EXPORT_PLUGIN2(systemTrayPlugin, Plugin)

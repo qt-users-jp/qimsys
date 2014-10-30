@@ -32,5 +32,3 @@ QimsysAbstractPluginObject *Plugin::createObject(QObject *parent)
 {
     return new Object(parent);
 }
-
-Q_EXPORT_PLUGIN2(toolBarPlugin, Plugin)

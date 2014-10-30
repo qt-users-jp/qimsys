@@ -1,5 +1,7 @@
 include(../../../../qimsysplugin.pri)
 
+QT += widgets x11extras
+
 DEPENDPATH += .
 INCLUDEPATH += . \
     ./IMdkit

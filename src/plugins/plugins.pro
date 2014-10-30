@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
-isEqual(QT_MAJOR_VERSION, 4) {
+isEqual(QT_MAJOR_VERSION, 5) {
     SUBDIRS = system languages inputmethods engines
 
     !contains(QIMSYS_CONFIG, no-keyboard) {
@@ -12,6 +12,6 @@ isEqual(QT_MAJOR_VERSION, 4) {
     }
 }
 
-isEqual(QT_MAJOR_VERSION, 5) {
+isEqual(QT_MAJOR_VERSION, 4) {
     SUBDIRS += clients
 }

@@ -19,14 +19,7 @@ defineReplace(cleanPath) {
 # For use in custom compilers which just copy files
 win32:i_flag = i
 defineReplace(stripSrcDir) {
-    win32 {
-        !contains(1, ^.:.*):1 = $$OUT_PWD/$$1
-    } else {
-        !contains(1, ^/.*):1 = $$OUT_PWD/$$1
-    }
-    out = $$cleanPath($$1)
-    out ~= s|^$$re_escape($$PWD/)||$$i_flag
-    return($$out)
+    return($$relative_path($$absolute_path($$1, $$OUT_PWD), $$_PRO_FILE_PWD_))
 }
 
 copy_files.path = $$QIMSYS_BUILD_TREE/$$QIMSYS_TARGET_PATH/$$QIMSYS_DATA_PATH/$$COPY_TARGET

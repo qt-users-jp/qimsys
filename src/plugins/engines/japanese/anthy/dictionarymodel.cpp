@@ -103,13 +103,6 @@ DictionaryModel::Private::Private(DictionaryModel *parent)
         list.append(d);
         ret = libanthydic.anthy_priv_dic_select_next_entry();
     }
-
-    QHash<int, QByteArray> roles;
-    roles[Sound + Qt::UserRole] = "sound";
-    roles[Spelling + Qt::UserRole] = "spelling";
-    roles[WordType + Qt::UserRole] = "wordType";
-    roles[Frequency + Qt::UserRole] = "frequency";
-    q->setRoleNames(roles);
 }
 
 DictionaryModel::Private::~Private()
@@ -352,6 +345,16 @@ bool DictionaryModel::removeRows(int row, int count, const QModelIndex &parent)
 QVariant DictionaryModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     return d->headerData(section, orientation, role);
+}
+
+QHash<int,QByteArray> DictionaryModel::roleNames() const
+{
+    QHash<int, QByteArray> ret;
+    ret[Sound + Qt::UserRole] = "sound";
+    ret[Spelling + Qt::UserRole] = "spelling";
+    ret[WordType + Qt::UserRole] = "wordType";
+    ret[Frequency + Qt::UserRole] = "frequency";
+    return ret;
 }
 
 QVariantList DictionaryModel::rawData(int row) const

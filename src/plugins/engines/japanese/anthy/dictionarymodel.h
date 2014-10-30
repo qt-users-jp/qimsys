@@ -52,11 +52,13 @@ public:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+    QHash<int,QByteArray> roleNames() const;
 
     Q_INVOKABLE void save();
 
     Q_INVOKABLE QVariantList rawData(int row) const;
     Q_INVOKABLE void setRawData(int row, QVariantList rawData);
+
 
 private:
     class Private;

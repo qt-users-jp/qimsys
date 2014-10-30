@@ -29,6 +29,7 @@ namespace Japanese {
 class Plugin : public QimsysPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "me.qtquick.qimsys.QimsysPlugin/0.1" FILE "kana.json")
     Q_INTERFACES(QimsysPlugin)
 public:
     Plugin();

@@ -29,13 +29,14 @@
 #include <qimsyscandidatemanager.h>
 #include <qimsysdynamictranslator.h>
 
-#include <QApplication>
+#include <QCoreApplication>
 #include <QIcon>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QSslError>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QSettings>
 
 namespace Japanese {
@@ -324,7 +325,8 @@ void Engine::Private::readPrediction()
     QNetworkReply *reply = qobject_cast<QNetworkReply*>(sender());
     reply->deleteLater();
     QimsysPreeditItem item = preeditManager->item();
-    QString preeditString = reply->url().queryItemValue("string");
+    QUrlQuery query(reply->url());
+    QString preeditString = query.queryItemValue("string");
     if (preeditString != item.from.join("")) {
         return;
     }
@@ -396,8 +398,9 @@ void Engine::Private::readConversion()
     conversionReply = 0;
     if (reply->error() != QNetworkReply::NoError) return;
     QimsysPreeditItem item = preeditManager->item();
-    if (reply->url().queryItemValue("string") != item.from.join("")) {
-        qimsysDebug() << reply->url().queryItemValue("string") << item.from;
+    QUrlQuery query(reply->url());
+    if (query.queryItemValue("string") != item.from.join("")) {
+        qimsysDebug() << query.queryItemValue("string") << item.from;
         return;
     }
 
@@ -541,7 +544,7 @@ void Engine::Private::resize()
     qimsysDebug() << url;
     QNetworkRequest request;
     request.setUrl(QUrl(url));
-    request.setRawHeader("User-Agent", QString("%1(%2)").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()).toUtf8());
+    request.setRawHeader("User-Agent", QString("%1(%2)").arg(QCoreApplication::applicationName()).arg(QCoreApplication::applicationVersion()).toUtf8());
 
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, SIGNAL(finished()), this, SLOT(readConversion()));

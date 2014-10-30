@@ -48,6 +48,3 @@ void Plugin::registerTypes(const char *uri)
     qmlRegisterType<KeyboardManager>(uri, 1, 0, "KeyboardManager");
     qimsysDebugOut();
 }
-
-Q_EXPORT_PLUGIN2(qimsysCorePlugin, QT_PREPEND_NAMESPACE(Plugin));
-

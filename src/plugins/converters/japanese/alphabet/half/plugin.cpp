@@ -40,5 +40,3 @@ QimsysAbstractPluginObject *Plugin::createObject(QObject *parent)
     qimsysDebugOut() << ret;
     return ret;
 }
-
-Q_EXPORT_PLUGIN2(japaneseAlphabetHalfPlugin, Plugin)
