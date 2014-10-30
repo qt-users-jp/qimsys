@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-isEqual(QT_MAJOR_VERSION, 4) {
+isEqual(QT_MAJOR_VERSION, 5) {
     SUBDIRS += src share
     contains(QIMSYS_CONFIG, sdk) : SUBDIRS += doc tools
     contains(QIMSYS_CONFIG, examples) : SUBDIRS += examples
@@ -13,7 +13,7 @@ isEqual(QT_MAJOR_VERSION, 4) {
     }
 }
 
-isEqual(QT_MAJOR_VERSION, 5) {
+isEqual(QT_MAJOR_VERSION, 4) {
     SUBDIRS += src
 }
 

@@ -31,6 +31,3 @@ void Plugin::registerTypes(const char *uri)
     Q_ASSERT(QLatin1String(uri) == QLatin1String("Qimsys.Gui"));
     qimsysDebugOut();
 }
-
-Q_EXPORT_PLUGIN2(qimsysGuiPlugin, QT_PREPEND_NAMESPACE(Plugin));
-

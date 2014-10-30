@@ -28,6 +28,7 @@ namespace Xim {
 class Plugin : public QimsysPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "me.qtquick.qimsys.QimsysPlugin/0.1" FILE "xim.json")
     Q_INTERFACES(QimsysPlugin)
 public:
     Plugin();

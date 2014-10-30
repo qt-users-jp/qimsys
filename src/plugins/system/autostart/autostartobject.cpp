@@ -21,12 +21,12 @@
 #include "autostartobject.h"
 
 #include <qimsysdynamictranslator.h>
+#include <qimsysdebug.h>
 
-#include <QApplication>
 #include <QDir>
 #include <QFile>
-#include <QMessageBox>
 #include <QTextStream>
+#include <QStandardPaths>
 
 class AutoStartObject::Private : private QObject
 {
@@ -66,9 +66,10 @@ AutoStartObject::Private::~Private()
 
 void AutoStartObject::Private::enabledChanged(bool enabled)
 {
-    QDir dir(QApplication::applicationDirPath());
-    dir.cdUp();
-    QString desktop =  dir.absolutePath() + QLatin1String("/share/applications/qimsys.desktop");
+    QString desktop = QStandardPaths::locate(QStandardPaths::ApplicationsLocation, QLatin1String("qimsys.desktop"));
+    if (desktop.isNull()) {
+        qimsysWarning() << "qimsys.desktop not found";
+    }
     QString autostart = QString("%1/%2/%3").arg(QDir::homePath()).arg(".config/autostart").arg("qimsys.desktop");
     if (enabled) {
         QFile::link(desktop, autostart);

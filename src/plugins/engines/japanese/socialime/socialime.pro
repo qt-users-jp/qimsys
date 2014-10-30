@@ -9,6 +9,7 @@ SOURCES += engine.cpp \
     plugin.cpp
 
 !contains(QIMSYS_CONFIG, no-gui) {
+    QT += widgets
     HEADERS += settings.h
     SOURCES += settings.cpp
     RESOURCES += socialime.qrc

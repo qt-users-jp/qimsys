@@ -26,6 +26,7 @@
 class SettingsPlugin : public QimsysPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "me.qtquick.qimsys.QimsysPlugin/0.1" FILE "settings.json")
     Q_INTERFACES(QimsysPlugin)
 public:
     SettingsPlugin();

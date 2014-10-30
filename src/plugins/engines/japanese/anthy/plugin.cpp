@@ -34,5 +34,3 @@ QimsysAbstractPluginObject *Plugin::createObject(QObject *parent)
 {
     return new Engine(parent);
 }
-
-Q_EXPORT_PLUGIN2(anthyPlugin, Plugin)
