@@ -25,6 +25,8 @@ class Configure
         opt.on("--qt_im_module", "install dir for immodule for Qt") { @qt_im_module = val }
         opt.on("--gtk_im_module", "install dir for immodule for Gtk") { @gtk_im_module = val }
         opt.on("--no-dbus", "build and install qimsys without dbus") { @config.push( 'no-dbus' ) }
+        opt.on("--no-socialime", "disable socialime support") { @config.push( 'no-socialime' ) }
+        opt.on("--no-googleime", "disable googleime cgi api support") { @config.push( 'no-googleime' ) }
         opt.on("--sdk", "build and install qimsys sdk") { @config.push( 'sdk' ) }
         opt.on("--examples", "build and install examples") { @config.push( 'examples' ) }
         opt.on("--tests", "build tests") { @config.push( 'tests' ) }
@@ -54,14 +56,16 @@ class Configure
         cmd.push "GTK_IM_MODULE_DIR=#{@gtk_im_module}"
         cmd.push @config.collect{ |c| "QIMSYS_CONFIG+=#{c}" } unless @config.empty?
 
-        print "Qt(qmake)        : #{@qmake}\n"
-        print "Prefix           : #{@install_root}\n"
-        print "immodule for Qt  : #{@qt_im_module}\n"
-        print "immodule for Gtk : #{@gtk_im_module}\n"
-        print "DBus             : #{@config.include?('no-dbus') ? 'No' : 'Yes'}\n"
-        print "SDK              : #{@config.include?('sdk') ? 'Yes' : 'No'}\n"
-        print "Examples         : #{@config.include?('examples') ? 'Yes' : 'No'}\n"
-        print "Tests            : #{@config.include?('tests') ? 'Yes' : 'No'}\n"
+        print "Qt(qmake)          : #{@qmake}\n"
+        print "Prefix             : #{@install_root}\n"
+        print "immodule for Qt    : #{@qt_im_module}\n"
+        print "immodule for Gtk   : #{@gtk_im_module}\n"
+        print "DBus               : #{@config.include?('no-dbus') ? 'No' : 'Yes'}\n"
+        print "Social IME         : #{@config.include?('no-socialime') ? 'No' : 'Yes'}\n"
+        print "Google IME CGI API : #{@config.include?('no-googleime') ? 'No' : 'Yes'}\n"
+        print "SDK                : #{@config.include?('sdk') ? 'Yes' : 'No'}\n"
+        print "Examples           : #{@config.include?('examples') ? 'Yes' : 'No'}\n"
+        print "Tests              : #{@config.include?('tests') ? 'Yes' : 'No'}\n"
 #        print( "#{cmd.join(' ')}\n" )
         `#{cmd.join(' ')}`
         print( "configured!\n" )
