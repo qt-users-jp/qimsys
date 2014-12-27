@@ -469,7 +469,7 @@ void Engine::Private::resize()
         item.rawString.append(QString());
         QString f = conversionItem.from;
         qimsysDebug() << f << from;
-        while (!f.isNull()) {
+        while (!f.isEmpty()) {
             if (f.startsWith(from.first())) {
                 f= f.mid(from.first().length());
                 item.from[item.from.length() - 1] = item.from.last() + from.takeFirst();
