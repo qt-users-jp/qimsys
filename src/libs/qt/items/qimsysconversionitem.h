@@ -32,7 +32,7 @@ struct QIMSYS_EXPORT QimsysConversionItem {
     QString hint;
     QString source;
 
-    inline bool operator==(const QimsysConversionItem &other) {
+    inline bool operator==(const QimsysConversionItem &other) const {
         return (from == other.from && to == other.to && hint == other.hint && source == other.source);
     }
 };

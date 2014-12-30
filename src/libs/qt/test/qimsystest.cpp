@@ -84,7 +84,7 @@ void QimsysTest::initTestCase()
 
     qimsysDebug() << rootDir.absolutePath();
     setQimsysPluginPath(rootDir.absolutePath());
-#ifndef Q_WS_X11
+#ifndef Q_OS_LINUX
     if (rootDir.exists(QLatin1String("inputmethods"))) {
         q->addLibraryPath(rootDir.absolutePath());
     }
