@@ -56,8 +56,8 @@ Application::Private::Private(Application *parent)
     , q(parent)
 {
     qimsysDebugIn() << parent;
-    q->setOrganizationName("LinuxLife");
-    q->setOrganizationDomain("linux-life.net");
+    q->setOrganizationName("QtQuick.Me");
+    q->setOrganizationDomain("qtquick.me");
     q->setApplicationName("qimsys");
     q->setApplicationVersion(QIMSYS_MACRO_TO_STRING(QIMSYS_VERSION));
 

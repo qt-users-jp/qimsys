@@ -24,7 +24,7 @@
 #include <gmodule.h>
 
 #ifndef QIMSYS_NO_DBUS
-static const char *const QIMSYS_DBUS_SERVICE = "net.linux-life.qimsys";
+static const char *const QIMSYS_DBUS_SERVICE = "me.qtquick.qimsys";
 
 typedef unsigned long long gulonglong;
 #define qimsys_marshal_VOID__ULONGLONG qimsys_marshal_VOID__UINT64
