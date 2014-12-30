@@ -24,7 +24,7 @@
 #include <QtCore/qglobal.h>
 
 #ifndef QIMSYS_NO_DBUS
-static const char *const QIMSYS_DBUS_SERVICE = "net.linux-life.qimsys";
+static const char *const QIMSYS_DBUS_SERVICE = "me.qtquick.qimsys";
 #endif
 
 #ifdef QIMSYS_LIBRARY
