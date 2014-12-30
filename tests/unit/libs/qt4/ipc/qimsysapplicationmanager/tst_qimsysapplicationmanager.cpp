@@ -128,7 +128,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("language_%1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("language_%1").arg(i);
         }
     }
 
@@ -185,7 +185,7 @@ private slots:
         QTest::addColumn<qulonglong>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << (qulonglong)i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << (qulonglong)i;
         }
     }
 
@@ -214,7 +214,7 @@ private slots:
         QTest::addColumn<qulonglong>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << (qulonglong)i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << (qulonglong)i;
         }
     }
 
@@ -277,7 +277,7 @@ private slots:
             QPainter p(&pix);
             p.drawText(0, 0, 31, 31, Qt::AlignCenter, QString::number(i));
             p.end();
-            QTest::newRow(QString::number(i).toAscii().data()) << QIcon(pix);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QIcon(pix);
         }
     }
 

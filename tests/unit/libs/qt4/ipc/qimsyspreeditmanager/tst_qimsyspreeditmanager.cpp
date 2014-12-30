@@ -131,7 +131,7 @@ private slots:
             item.cursor = 0;
             item.selection = 0;
             item.modified = 0;
-            QTest::newRow(QString("alphabet(%1)").arg(i).toAscii().data()) << item;
+            QTest::newRow(QString("alphabet(%1)").arg(i).toLocal8Bit().data()) << item;
         }
     }
 
@@ -170,7 +170,7 @@ private slots:
         QTest::addColumn<QRect>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QRect(i, i, i, i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QRect(i, i, i, i);
         }
     }
 
@@ -229,7 +229,7 @@ private slots:
         QTest::addColumn<int>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << i;
         }
     }
 
@@ -258,7 +258,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("surrounding text %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("surrounding text %1").arg(i);
         }
     }
 
@@ -287,7 +287,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("surrounding text %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("surrounding text %1").arg(i);
         }
     }
 
@@ -316,7 +316,7 @@ private slots:
         QTest::addColumn<int>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << i;
         }
     }
 

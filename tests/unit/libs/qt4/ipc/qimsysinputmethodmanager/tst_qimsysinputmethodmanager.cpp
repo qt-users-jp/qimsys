@@ -117,7 +117,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("locale %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("locale %1").arg(i);
         }
     }
 
@@ -146,7 +146,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("identifier %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("identifier %1").arg(i);
         }
     }
 
@@ -175,7 +175,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("converter %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("converter %1").arg(i);
         }
     }
 
@@ -204,7 +204,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("interpreter %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("interpreter %1").arg(i);
         }
     }
 
@@ -233,7 +233,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("engine %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("engine %1").arg(i);
         }
     }
 
@@ -262,7 +262,7 @@ private slots:
         QTest::addColumn<uint>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << (uint)i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << (uint)i;
         }
     }
 
@@ -291,7 +291,7 @@ private slots:
         QTest::addColumn<QString>("data");
 
         for (int i = 0; i < 10; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << QString("command %1").arg(i);
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << QString("command %1").arg(i);
         }
     }
 

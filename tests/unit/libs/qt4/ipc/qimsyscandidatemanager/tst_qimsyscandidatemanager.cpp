@@ -94,7 +94,7 @@ private slots:
         QimsysConversionItemList candidates;
         QString alphabet = "abcde";
         for (int i = 0; i < alphabet.length() + 1; i++) {
-            QTest::newRow(QString("candidates(%1)").arg(i).toAscii().data()) << candidates;
+            QTest::newRow(QString("candidates(%1)").arg(i).toLocal8Bit().data()) << candidates;
             QimsysConversionItem elem;
             elem.from = QLatin1String("from:") + alphabet.left(i + 1);
             elem.to = QLatin1String("to:") + alphabet.left(i + 1);
@@ -127,7 +127,7 @@ private slots:
         QTest::addColumn<int>("data");
 
         for (int i = 0; i < 2; i++) {
-            QTest::newRow(QString::number(i).toAscii().data()) << i;
+            QTest::newRow(QString::number(i).toLocal8Bit().data()) << i;
         }
     }
 

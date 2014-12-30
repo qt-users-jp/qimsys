@@ -20,6 +20,7 @@
 
 #include <QtTest>
 #include <QtGui>
+#include <QtWidgets>
 
 #include <qimsysdebug.h>
 #include <qimsysapplicationmanager.h>
@@ -90,34 +91,6 @@ private:
 };
 
 void JapaneseStandardTest::initTestCase() {
-    bool found = false;
-    QDir dir(QCoreApplication::applicationDirPath());
-    while (!found && dir.cdUp()) {
-        foreach(const QString &subdir, dir.entryList(QDir::Dirs)) {
-            if (subdir == QLatin1String("bin")) {
-                dir.cd("lib");
-                dir.cd("plugins");
-                dir.cd("inputmethods");
-                found = true;
-                break;
-            }
-        }
-    }
-    QVERIFY(found);
-    QPluginLoader loader(dir.absoluteFilePath("libim-qimsys-qt.so"));
-    QObject *object = loader.instance();
-    QInputContext *ic = 0;
-    if (object) {
-        QInputContextPlugin* plugin = qobject_cast<QInputContextPlugin*>(object);
-        if (plugin && plugin->keys().contains("qimsys")) {
-            ic = plugin->create("qimsys");
-        } else {
-            delete object;
-        }
-    }
-    QVERIFY(ic);
-    qApp->setInputContext(ic);
-
     keyManager.init();
     if (keyManager.hasError()) {
         QFAIL("Run qimsys by yourself first.");
@@ -129,10 +102,9 @@ void JapaneseStandardTest::initTestCase() {
 
     widget = new QPlainTextEdit;
     widget->show();
-#ifdef Q_WS_X11
-    qt_x11_wait_for_window_manager(widget);
-#endif
+    QTest::qWaitForWindowExposed(widget);
     widget->setFocus();
+    QTest::qWait(200);
 }
 
 void JapaneseStandardTest::init()
@@ -316,9 +288,9 @@ void JapaneseStandardTest::functionality()
                     if (item.to.at(i) != data) {
                         inputMethodManager.execute(QLatin1String("Select next candidate"));
                         QimsysConversionItemList candidateItems = candidateManager.items();
-                        for (int i = 0; i < candidateItems.length(); i++) {
-                            if (candidateItems.at(i).to == data) {
-                                candidateManager.setCurrentIndex(i);
+                        for (int j = 0; j < candidateItems.length(); j++) {
+                            if (candidateItems.at(j).to == data) {
+                                candidateManager.setCurrentIndex(j);
                                 QTest::qWait(100);
                                 break;
                             }
@@ -338,6 +310,32 @@ void JapaneseStandardTest::functionality()
     }
 }
 
-QTEST_MAIN(JapaneseStandardTest)
+int main(int argc, char *argv[])
+{
+    bool found = false;
+    QDir dir(QCoreApplication::applicationDirPath());
+    while (!found && dir.cdUp()) {
+        foreach(const QString &subdir, dir.entryList(QDir::Dirs)) {
+            if (subdir == QLatin1String("bin")) {
+                dir.cd("lib");
+                dir.cd("plugins");
+                found = true;
+                break;
+            }
+        }
+    }
+    if (!found) {
+        qFatal("!");
+    }
+
+    QByteArray qtPluginPath = qgetenv("QT_PLUGIN_PATH");
+    qtPluginPath.prepend(QStringLiteral("%1:").arg(dir.absolutePath()).toUtf8());
+    qputenv("QT_PLUGIN_PATH", qtPluginPath);
+    qputenv("QT_IM_MODULE", QByteArrayLiteral("qimsys"));
+
+    QApplication app(argc, argv);
+    JapaneseStandardTest tc;
+    return QTest::qExec(&tc, argc, argv);
+}
 
 #include "main.moc"
