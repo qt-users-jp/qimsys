@@ -19,10 +19,4 @@ SOURCES += plugin.cpp engine.cpp \
 
     RESOURCES += anthy.qrc
     FORMS += wordeditor.ui settings.ui
-
-    COPY_TARGET = qml/Japanese/Anthy
-    COPY_FILES += Editor.qml
-    include(../../../../../qimsysdata.pri)
-
-    OTHER_FILES += $$COPY_FILES
 }
