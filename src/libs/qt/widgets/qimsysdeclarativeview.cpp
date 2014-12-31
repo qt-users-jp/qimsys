@@ -21,8 +21,8 @@
 #include "qimsysdeclarativeview.h"
 #include "qimsysdebug.h"
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
-#include <QtGui/QApplication>
 #include <QtGui/QMoveEvent>
 #include <QtGui/QResizeEvent>
 
@@ -51,7 +51,7 @@ QimsysDeclarativeView::Private::Private(QimsysDeclarativeView *parent)
 #ifdef QIMSYS_APPLICATION_DIR_PATH
     QDir rootDir(QIMSYS_MACRO_TO_STRING2(QIMSYS_APPLICATION_DIR_PATH));
 #else
-    QDir rootDir = QApplication::applicationDirPath();
+    QDir rootDir = QCoreApplication::applicationDirPath();
 #endif
     // up to root dir
     for (int i = 0; i < QString(QIMSYS_MACRO_TO_STRING(QIMSYS_APP_PATH)).count(QLatin1Char('/')) + 1; i++) {
@@ -63,7 +63,7 @@ QimsysDeclarativeView::Private::Private(QimsysDeclarativeView *parent)
     q->engine()->addImportPath(rootDir.absolutePath());
 
     QDeclarativeContext *context = q->rootContext();
-    context->setContextProperty("version", QApplication::applicationVersion());
+    context->setContextProperty("version", QCoreApplication::applicationVersion());
     context->setContextProperty("lgpl", read(":/LICENSE.LGPL"));
     context->setContextProperty("lgpl_exception", read(":/LGPL_EXCEPTION.TXT"));
     context->setContextProperty("self", q);
@@ -109,7 +109,7 @@ QUrl QimsysDeclarativeView::resolveUrl(const QString &path) const
 #ifdef QIMSYS_APPLICATION_DIR_PATH
     QDir rootDir(QIMSYS_MACRO_TO_STRING2(QIMSYS_APPLICATION_DIR_PATH));
 #else
-    QDir rootDir = QApplication::applicationDirPath();
+    QDir rootDir = QCoreApplication::applicationDirPath();
 #endif
     // up to root dir
     for (int i = 0; i < QString(QIMSYS_MACRO_TO_STRING(QIMSYS_APP_PATH)).count(QLatin1Char('/')) + 1; i++) {

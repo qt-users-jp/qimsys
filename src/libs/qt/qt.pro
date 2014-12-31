@@ -20,6 +20,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
     include(plugins/plugins.pri)
     include(utils/utils.pri)
     include(server/server.pri)
+    include(widgets/widgets.pri)
 }
 contains(QIMSYS_CONFIG, tests) {
     include(test/test.pri)
