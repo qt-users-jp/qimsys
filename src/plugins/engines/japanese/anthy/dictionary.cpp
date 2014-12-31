@@ -90,8 +90,3 @@ void Dictionary::del(const QModelIndex &index, QWidget *parent)
     int row = index.row();
     d->model->removeRow(row, index.parent());
 }
-
-QUrl Dictionary::editor() const
-{
-    return resolveUrl(QLatin1String("Japanese/Anthy/Editor.qml"));
-}
