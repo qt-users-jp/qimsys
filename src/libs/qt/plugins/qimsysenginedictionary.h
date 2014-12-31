@@ -43,8 +43,6 @@ public:
     virtual void edit(const QModelIndex &index, QWidget *parent = 0) = 0;
     virtual void del(const QModelIndex &index, QWidget *parent = 0) = 0;
 
-    virtual QUrl editor() const = 0;
-
 protected:
     QUrl resolveUrl(const QString &path) const;
 };

@@ -39,7 +39,6 @@ public:
     void edit(const QModelIndex &index, QWidget *parent = 0);
     void del(const QModelIndex &index, QWidget *parent = 0);
 
-    QUrl editor() const;
 private:
     class Private;
     Private *d;
