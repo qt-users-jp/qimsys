@@ -7,9 +7,18 @@ Version = "0.2.0"
 class Configure
     def initialize()
         @qmake = `which qmake`.chomp
+        @qmake_version = `qmake -query QT_VERSION`[0]
         @qmake_default = @qmake.dup
+        @debug = false
         @install_root = '/usr/local'
-        @qt_im_module = `qmake -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
+        case @qmake_version
+        when '5'
+            @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
+        when '4'
+            @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/inputmethods"
+        else
+            raise ArgumentError "unknown qmake version #{@qmake_version}"
+        end
         @qt_im_module_default = @qt_im_module.dup
         @gtk_im_module = `pkg-config --variable=libdir gtk+-2.0`.chomp + "/gtk-2.0/" + `pkg-config --variable=gtk_binary_version gtk+-2.0`.chomp + "/immodules"
         @config = []
@@ -27,6 +36,7 @@ class Configure
         opt.on("--no-dbus", "build and install qimsys without dbus") { @config.push( 'no-dbus' ) }
         opt.on("--no-socialime", "disable socialime support") { @config.push( 'no-socialime' ) }
         opt.on("--no-googleime", "disable googleime cgi api support") { @config.push( 'no-googleime' ) }
+        opt.on("--debug", 'build qimsys in debug mode') { @debug = true }
         opt.on("--sdk", "build and install qimsys sdk") { @config.push( 'sdk' ) }
         opt.on("--examples", "build and install examples") { @config.push( 'examples' ) }
         opt.on("--tests", "build tests") { @config.push( 'tests' ) }
@@ -44,7 +54,15 @@ class Configure
 
     def exec()
         if @qmake != @qmake_default && @qt_im_module == @qt_im_module_default
-            @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
+            @qmake_version = `#{@qmake} -query QT_VERSION`[0]
+            case @qmake_version
+            when '5'
+                @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/platforminputcontexts"
+            when '4'
+                @qt_im_module = `#{@qmake} -query QT_INSTALL_PLUGINS`.chomp + "/inputmethods"
+            else
+                raise ArgumentError "unknown qmake version #{@qmake_version}"
+            end
         end
 
         cmd = []
@@ -54,9 +72,10 @@ class Configure
         cmd.push "PREFIX=#{@install_root}"
         cmd.push "QT_IM_MODULE_DIR=#{@qt_im_module}"
         cmd.push "GTK_IM_MODULE_DIR=#{@gtk_im_module}"
+        cmd.push "CONFIG+=#{@debug ? 'debug' : 'release'}"
         cmd.push @config.collect{ |c| "QIMSYS_CONFIG+=#{c}" } unless @config.empty?
 
-        print "Qt(qmake)          : #{@qmake}\n"
+        print "Qt(qmake)          : #{@qmake} #{@debug ? '(Debug)' : ''}\n"
         print "Prefix             : #{@install_root}\n"
         print "immodule for Qt    : #{@qt_im_module}\n"
         print "immodule for Gtk   : #{@gtk_im_module}\n"
