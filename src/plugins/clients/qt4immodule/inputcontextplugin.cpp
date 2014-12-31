@@ -72,3 +72,5 @@ QStringList InputContextPlugin::languages(const QString &key)
     ret << QLatin1String("ja");
     return ret;
 }
+
+Q_EXPORT_PLUGIN2(qimsysInputContextPlugin, InputContextPlugin)
