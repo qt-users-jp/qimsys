@@ -237,10 +237,14 @@ void Interpreter::Private::itemChanged(const QimsysPreeditItem &item)
             }
             break;
         } else {
-            if (to.at(i) == from.at(i)) {
+            if (to.at(i) == from.at(i) && from.at(i) == rawString.at(i)) {
                 t += to.at(i);
                 f += from.at(i);
                 rS += rawString.at(i);
+            } else {
+                t.clear();
+                f.clear();
+                rS.clear();
             }
         }
     }
