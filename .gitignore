@@ -1,1 +1,2 @@
 *.pro.*
+src/libs/gtk/ipc/qimsysmarshalers.?
