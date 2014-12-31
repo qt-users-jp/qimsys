@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2010 by Tasuku Suzuki <stasuku@gmail.com>                 *
+ *   Copyright (C) 2010-2015 by Tasuku Suzuki <stasuku@gmail.com>            *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -43,4 +43,3 @@ QUrl QimsysEngineDictionary::resolveUrl(const QString &path) const
     rootDir.cd(QLatin1String(QIMSYS_MACRO_TO_STRING(QIMSYS_DATA_PATH)));
     return QUrl(QString("%1/qml/%2").arg(rootDir.absolutePath()).arg(path));
 }
-

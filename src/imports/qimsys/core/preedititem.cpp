@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2010 by Tasuku Suzuki <stasuku@gmail.com>                 *
+ *   Copyright (C) 2010-2015 by Tasuku Suzuki <stasuku@gmail.com>            *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -128,4 +128,3 @@ void PreeditItem::setModified(int modified)
 }
 
 QML_DECLARE_TYPE(PreeditItem);
-
