@@ -167,7 +167,7 @@ QimsysApplicationManager *qimsys_application_manager_new()
 {
     qimsys_debug_in();
     QimsysApplicationManager *ret = QIMSYSAPPLICATIONMANAGER(g_object_new(QIMSYSAPPLICATIONMANAGER_TYPE, NULL));
-    qimsys_debug("%s(%d) ret = %X\n", __PRETTY_FUNCTION__, __LINE__, ret);
+    qimsys_debug("%s(%d) ret = %p\n", __PRETTY_FUNCTION__, __LINE__, ret);
     qimsys_debug_out();
     return ret;
 }
