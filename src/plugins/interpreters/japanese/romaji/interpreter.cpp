@@ -285,6 +285,7 @@ void Interpreter::Private::itemChanged(const QimsysPreeditItem &item)
                 // insert the replacement
                 QString conv = convertMap[target.toLower()];
                 modified = conv.length();
+                qimsysDebug() << conv << cursor;
 
                 if (conv.length() == 2 && (conv.at(0) == rS.at(0) || conv.at(1) == rS.at(1) || conv.at(0) == QChar(0x3093))) {
                     qimsysDebug() << conv << rS;
@@ -296,10 +297,25 @@ void Interpreter::Private::itemChanged(const QimsysPreeditItem &item)
                     rS = rS.mid(1);
                     cursor++;
                 }
-                qimsysDebug() << conv << rS;
-                to.insert(cursor, conv);
-                from.insert(cursor, conv);
-                rawString.insert(cursor, rS);
+
+                bool found = false;
+                k = 0;
+                for (int j = 0; j < to.length(); j++) {
+                    qimsysDebug() << k << to.at(j) << j << cursor;
+                    if (k == cursor) {
+                        to.insert(j, conv);
+                        from.insert(j, conv);
+                        rawString.insert(j, rS);
+                        found = true;
+                        break;
+                    }
+                    k += to.at(j).length();
+                }
+                if (!found) {
+                    to.append(conv);
+                    from.append(conv);
+                    rawString.append(rS);
+                }
                 cursor = cursor + conv.length();
                 qimsysDebug() << to << from << rawString << cursor;
                 break;

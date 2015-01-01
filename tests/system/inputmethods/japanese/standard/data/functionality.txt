@@ -1,3 +1,14 @@
+sfasfa<-mi
++	sfa
+=	sふぁ
++	sfa
+=	sふぁsふぁ
+<	1
++	m
+=	sふぁsふmぁ
++	i
+=	sふぁsふみぁ
+
 kennya888
 +	kennya888
 =	けんや888
