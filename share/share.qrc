@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/" >
-        <file>icons/qimsys_16x16.png</file>
-        <file>icons/qimsys_22x22.png</file>
-        <file>icons/qimsys_32x32.png</file>
-        <file>icons/qimsys_64x64.png</file>
-        <file>icons/qimsys_128x128.png</file>
+        <file>icons/16x16/qimsys.png</file>
+        <file>icons/22x22/qimsys.png</file>
+        <file>icons/32x32/qimsys.png</file>
+        <file>icons/64x64/qimsys.png</file>
+        <file>icons/128x128/qimsys.png</file>
     </qresource>
 </RCC>
