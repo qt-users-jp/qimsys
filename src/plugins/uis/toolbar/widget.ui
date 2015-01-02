@@ -32,7 +32,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../share/share.qrc">:/icons/qimsys_22x22.png</pixmap>
+    <pixmap resource="../../../../share/share.qrc">:/icons/22x22/qimsys.png</pixmap>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
@@ -48,7 +48,16 @@
     <property name="spacing">
      <number>0</number>
     </property>
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <item>
@@ -65,16 +74,6 @@
   </widget>
  </widget>
  <resources>
-  <include location="../../../libs/qt/qt.qrc"/>
-  <include location="../../../../share/share.qrc"/>
-  <include location="../../../libs/qt/qt.qrc"/>
-  <include location="../../../../share/share.qrc"/>
-  <include location="../../../libs/qt/qt.qrc"/>
-  <include location="../../../libs/qt/qt.qrc"/>
-  <include location="../../../../share/share.qrc"/>
-  <include location="../../../libs/qt/qt.qrc"/>
-  <include location="../../../../share/share.qrc"/>
-  <include location="../../../libs/qt/qt.qrc"/>
   <include location="../../../../share/share.qrc"/>
  </resources>
  <connections/>

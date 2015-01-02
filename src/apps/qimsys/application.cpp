@@ -64,8 +64,8 @@ Application::Private::Private(Application *parent)
 #ifndef QIMSYS_NO_GUI
     QIcon icon;
     QDir icons(":/icons/");
-    foreach(const QString &png, icons.entryList(QStringList() << "qimsys_*x*.png")) {
-        icon.addPixmap(icons.absoluteFilePath(png));
+    foreach(const QString &size, icons.entryList(QStringList() << "*x*")) {
+        icon.addPixmap(icons.absoluteFilePath(QStringLiteral("%1/qimsys.png").arg(size)));
     }
     q->setWindowIcon(icon);
 #endif
