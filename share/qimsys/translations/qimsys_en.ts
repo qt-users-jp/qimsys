@@ -24,8 +24,8 @@
     <message>
         <location filename="../../../src/plugins/uis/aboutqimsys/widget.cpp" line="+59"/>
         <source>&lt;span style=&quot;font-size: 15px; font-weight: bold;&quot;&gt;qimsys version %1&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;
-An input method for Qt&lt;br /&gt;&lt;br /&gt;
-Copyright &amp;copy; 2009-2011 Tasuku Suzuki &amp;lt;&lt;a href=&quot;mailto:stasuku@gmail.com&quot;&gt;stasuku@gmail.com&lt;/a&gt;&amp;gt;&lt;br /&gt;
+An input method&lt;br /&gt;&lt;br /&gt;
+Copyright &amp;copy; 2009-2015 Tasuku Suzuki &amp;lt;&lt;a href=&quot;mailto:stasuku@gmail.com&quot;&gt;stasuku@gmail.com&lt;/a&gt;&amp;gt;&lt;br /&gt;
 </source>
         <translation type="unfinished"></translation>
     </message>

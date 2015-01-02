@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2010-2015 by Tasuku Suzuki <stasuku@gmail.com>            *
+ *   Copyright (C) 2009-2015 by Tasuku Suzuki <stasuku@gmail.com>            *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -57,8 +57,8 @@ Widget::Private::Private(Widget *parent)
 
     ui.aboutQimsys->setText(
        tr("<span style=\"font-size: 15px; font-weight: bold;\">qimsys version %1</span><br /><br />\n"
-            "An input method for Qt<br /><br />\n"
-            "Copyright &copy; 2009-2011 Tasuku Suzuki &lt;<a href=\"mailto:stasuku@gmail.com\">stasuku@gmail.com</a>&gt;<br />\n"
+            "An input method<br /><br />\n"
+            "Copyright &copy; 2009-2015 Tasuku Suzuki &lt;<a href=\"mailto:stasuku@gmail.com\">stasuku@gmail.com</a>&gt;<br />\n"
        ).arg(QIMSYS_MACRO_TO_STRING(QIMSYS_VERSION))
    );
 
