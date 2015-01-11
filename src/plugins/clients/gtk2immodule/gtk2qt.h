@@ -28,7 +28,7 @@ static const int qimsys_gtk2qt_key_tbl[] = {
     0,                          0
 };
 
-inline int qimsys_gtk2qt_key_convert(int key)
+static inline int qimsys_gtk2qt_key_convert(int key)
 {
     int i;
     int ret = key;
