@@ -71,6 +71,7 @@ qimsys_platform_linux {
     QIMSYS_DATA_PATH = share/$$QIMSYS_APP_TARGET
     QIMSYS_TRANSLATIONS_PATH = $$QIMSYS_DATA_PATH/translations
     !isEqual(QIMSYS_SOURCE_TREE, $$QIMSYS_BUILD_TREE):copydata = 1
+    isEmpty(PREFIX):PREFIX = /usr/local
 }
 
 qimsys_platform_windows {
