@@ -1,7 +1,7 @@
 TARGET = im-qimsys-qt4
 
 isEmpty(QT_IM_MODULE_DIR) {
-    target.path = $$PREFIX/$$[QT_INSTALL_PLUGINS]/inputmethods
+    target.path = $$[QT_INSTALL_PLUGINS]/inputmethods
 } else {
     target.path = $$QT_IM_MODULE_DIR
 }
