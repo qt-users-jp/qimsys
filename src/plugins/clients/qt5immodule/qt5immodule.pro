@@ -1,7 +1,7 @@
 TARGET = im-qimsys-qt5
 
 isEmpty(QT_IM_MODULE_DIR) {
-    target.path = $$PREFIX/$$[QT_INSTALL_PLUGINS]/platforminputcontexts
+    target.path = $$[QT_INSTALL_PLUGINS]/platforminputcontexts
 } else {
     target.path = $$QT_IM_MODULE_DIR
 }
