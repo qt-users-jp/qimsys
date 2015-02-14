@@ -75,7 +75,7 @@ QimsysPreeditItem *qimsys_preedit_item_new(GValueArray *data)
 
 GValueArray *qimsys_preedit_item_get_value(QimsysPreeditItem *item)
 {
-    GValue value = {0};
+    GValue value = G_VALUE_INIT;
     GValueArray *ret;
 
     qimsys_debug_in();

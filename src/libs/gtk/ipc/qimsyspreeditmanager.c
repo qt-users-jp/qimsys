@@ -256,7 +256,7 @@ gboolean qimsys_preedit_manager_set_rect(QimsysPreeditManager *qpm, int x, int y
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue value = {0};
+    GValue value = G_VALUE_INIT;
     GValueArray *values;
 
     qimsys_debug_in();
@@ -340,7 +340,7 @@ gboolean qimsys_preedit_manager_set_font(QimsysPreeditManager *qpm, char *value)
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue v = {0};
+    GValue v = G_VALUE_INIT;
     GValueArray *values;
 
     qimsys_debug_in();
@@ -393,7 +393,7 @@ gboolean qimsys_preedit_manager_set_cursor_position(QimsysPreeditManager *qpm, i
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue v = {0};
+    GValue v = G_VALUE_INIT;
     GValueArray *values;
 
     qimsys_debug_in();
@@ -445,7 +445,7 @@ gboolean qimsys_preedit_manager_set_surrounding_text(QimsysPreeditManager *qpm, 
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue v = {0};
+    GValue v = G_VALUE_INIT;
     GValueArray *values;
     qimsys_debug_in();
 
@@ -496,7 +496,7 @@ gboolean qimsys_preedit_manager_set_current_selection(QimsysPreeditManager *qpm,
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue v = {0};
+    GValue v = G_VALUE_INIT;
     GValueArray *values;
     qimsys_debug_in();
 
@@ -546,7 +546,7 @@ gboolean qimsys_preedit_manager_set_maximum_text_length(QimsysPreeditManager *qp
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValue v = {0};
+    GValue v = G_VALUE_INIT;
     GValueArray *values;
     qimsys_debug_in();
 
