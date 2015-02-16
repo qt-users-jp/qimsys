@@ -41,8 +41,8 @@ static guint qimsys_preedit_manager_signals[QIMSYSPREEDITMANAGER_LAST_SIGNAL] = 
 
 G_DEFINE_TYPE(QimsysPreeditManager, qimsys_preedit_manager, QIMSYSABSTRACTIPCOBJECT_TYPE)
 
-static void qimsys_preedit_manager_item_changed(DBusGProxy *proxy, GValueArray *value, gpointer user_data);
-static void qimsys_preedit_manager_rect_changed(DBusGProxy *proxy, GValueArray *value, gpointer user_data);
+static void qimsys_preedit_manager_item_changed(DBusGProxy *proxy, GArray *value, gpointer user_data);
+static void qimsys_preedit_manager_rect_changed(DBusGProxy *proxy, GArray *value, gpointer user_data);
 #ifdef QIMSYSPREEDITMANAGER_FONT_SUPPORT
 static void qimsys_preedit_manager_font_changed(DBusGProxy *proxy, char *value, gpointer user_data);
 #endif
@@ -52,9 +52,9 @@ static void qimsys_preedit_manager_current_selection_changed(DBusGProxy *proxy, 
 static void qimsys_preedit_manager_maximum_text_length_changed(DBusGProxy *proxy, int maximum_text_length, gpointer user_data);
 static void qimsys_preedit_manager_committed(DBusGProxy *proxy, char *value, gulonglong target, gpointer user_data);
 
-#define QIMSYS_STRUCT_RECT (dbus_g_type_get_struct ("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
-#ifdef QIMSYSPREEDITMANAGER_FONT_SUPPORT
-#define G_STRUCT_STRING (dbus_g_type_get_struct ("GValueArray", G_TYPE_STRING, G_TYPE_INVALID))
+#define QIMSYS_STRUCT_RECT (dbus_g_type_get_struct ("GArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
+#ifdef QIMSYSPREEDITMANAGER_FONT_SUPPORTDD
+#define G_STRUCT_STRING (dbus_g_type_get_struct ("GArray", G_TYPE_STRING, G_TYPE_INVALID))
 #endif
 
 static void qimsys_preedit_manager_class_init(QimsysPreeditManagerClass *klass)
@@ -177,7 +177,8 @@ gboolean qimsys_preedit_manager_get_item(QimsysPreeditManager *qpm, QimsysPreedi
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray* item;
+    GArray* item = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+    g_array_set_clear_func(item, (GDestroyNotify) g_value_unset);
 
     qimsys_debug_in();
 
@@ -194,21 +195,22 @@ gboolean qimsys_preedit_manager_set_item(QimsysPreeditManager *qpm, QimsysPreedi
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *item;
+    GArray *item = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+    g_array_set_clear_func(item, (GDestroyNotify) g_value_unset);
 
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
         item = qimsys_preedit_item_get_value(value);
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setItem", &error, QIMSYS_STRUCT_PREEDITITEM, item, G_TYPE_INVALID, G_TYPE_INVALID))
-        g_value_array_free(item);
+        g_array_unref(item);
     }
 
     qimsys_debug_out();
     return ret;
 }
 
-static void qimsys_preedit_manager_item_changed(DBusGProxy *proxy, GValueArray *value, gpointer user_data)
+static void qimsys_preedit_manager_item_changed(DBusGProxy *proxy, GArray *value, gpointer user_data)
 {
     QimsysPreeditItem *item;
     qimsys_debug_in();
@@ -224,29 +226,30 @@ gboolean qimsys_preedit_manager_get_rect(QimsysPreeditManager *qpm, int *x, int 
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *value;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(4);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 4);
+        g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "rect", &error, G_TYPE_INVALID, QIMSYS_STRUCT_RECT, &values, G_TYPE_INVALID))
 
-        value = g_value_array_get_nth(values, 0);
+        value = &g_array_index(values, GValue, 0);
         *x = g_value_get_int(value);
         g_value_unset(value);
-        value = g_value_array_get_nth(values, 1);
+        value = &g_array_index(values, GValue, 1);
         *y = g_value_get_int(value);
         g_value_unset(value);
-        value = g_value_array_get_nth(values, 2);
+        value = &g_array_index(values, GValue, 2);
         *w = g_value_get_int(value);
         g_value_unset(value);
-        value = g_value_array_get_nth(values, 3);
+        value = &g_array_index(values, GValue, 3);
         *h = g_value_get_int(value);
         g_value_unset(value);
 
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -257,55 +260,56 @@ gboolean qimsys_preedit_manager_set_rect(QimsysPreeditManager *qpm, int x, int y
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue value = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&value, G_TYPE_INT);
         g_value_set_int(&value, x);
-        g_value_array_append(values, &value);
+        g_array_append_val(values, value);
         g_value_unset(&value);
 
         g_value_init(&value, G_TYPE_INT);
         g_value_set_int(&value, y);
-        g_value_array_append(values, &value);
+        g_array_append_val(values, value);
         g_value_unset(&value);
 
         g_value_init(&value, G_TYPE_INT);
         g_value_set_int(&value, w);
-        g_value_array_append(values, &value);
+        g_array_append_val(values, value);
         g_value_unset(&value);
 
         g_value_init(&value, G_TYPE_INT);
         g_value_set_int(&value, h);
-        g_value_array_append(values, &value);
+        g_array_append_val(values, value);
         g_value_unset(&value);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setRect", &error, QIMSYS_STRUCT_RECT, values, G_TYPE_INVALID, G_TYPE_INVALID))
 
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
 }
 
-static void qimsys_preedit_manager_rect_changed(DBusGProxy *proxy, GValueArray *values, gpointer user_data)
+static void qimsys_preedit_manager_rect_changed(DBusGProxy *proxy, GArray *values, gpointer user_data)
 {
     gint x, y, w, h;
     GValue *value;
     qimsys_debug_in();
-    value = g_value_array_get_nth(values, 0);
+    value = &g_array_index(values, GValue, 0);
     x = g_value_get_int(value);
     g_value_unset(value);
-    value = g_value_array_get_nth(values, 1);
+    value = &g_array_index(values, GValue, 1);
     y = g_value_get_int(value);
     g_value_unset(value);
-    value = g_value_array_get_nth(values, 2);
+    value = &g_array_index(values, GValue, 2);
     w = g_value_get_int(value);
     g_value_unset(value);
-    value = g_value_array_get_nth(values, 3);
+    value = &g_array_index(values, GValue, 3);
     h = g_value_get_int(value);
     g_value_unset(value);
     g_signal_emit(QIMSYSPREEDITMANAGER(user_data), qimsys_preedit_manager_signals[QIMSYSPREEDITMANAGER_RECT_CHANGED], 0, x, y, w, h);
@@ -317,20 +321,21 @@ gboolean qimsys_preedit_manager_get_font(QimsysPreeditManager *qpm, char **value
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *v;
 
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "font", &error, G_TYPE_INVALID, G_STRUCT_STRING, values, G_TYPE_INVALID))
 
-        v = g_value_array_get_nth(values, 0);
+        v = &g_array_index(values, GValue, 0);
         *value = g_value_get_string(v);
         g_value_unset(v);
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -341,20 +346,21 @@ gboolean qimsys_preedit_manager_set_font(QimsysPreeditManager *qpm, char *value)
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue v = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&v, G_TYPE_STRING);
         g_value_set_string(&v, value);
-        g_value_array_append(values, &v);
+        g_array_append_val(values, v);
         g_value_unset(&v);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setFont", &error, G_STRUCT_STRING, values, G_TYPE_INVALID, G_TYPE_INVALID))
 
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -370,19 +376,20 @@ gboolean qimsys_preedit_manager_get_cursor_position(QimsysPreeditManager *qpm, i
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *v;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "currentPosition", &error, G_TYPE_INVALID, G_TYPE_INT, values, G_TYPE_INVALID))
 
-        v = g_value_array_get_nth(values, 0);
+        v = &g_array_index(values, GValue, 0);
         *value = g_value_get_int(v);
         g_value_unset(v);
-        g_value_array_free(values);
+        g_array_unref(values);
     }
 
     qimsys_debug_out();
@@ -394,20 +401,21 @@ gboolean qimsys_preedit_manager_set_cursor_position(QimsysPreeditManager *qpm, i
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue v = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&v, G_TYPE_INT);
         g_value_set_int(&v, value);
-        g_value_array_append(values, &v);
+        g_array_append_val(values, v);
         g_value_unset(&v);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setCurrentPosition", &error, G_TYPE_INT, values, G_TYPE_INVALID, G_TYPE_INVALID))
 
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -422,19 +430,20 @@ gboolean qimsys_preedit_manager_get_surrounding_text(QimsysPreeditManager *qpm, 
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *v;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "surroundingText", &error, G_TYPE_INVALID, G_TYPE_STRING, values, G_TYPE_INVALID))
 
-        v = g_value_array_get_nth(values, 0);
+        v = &g_array_index(values, GValue, 0);
         *value = g_strdup(g_value_get_string(v));
         g_value_unset(v);
-        g_value_array_free(values);
+        g_array_unref(values);
     }
 
     qimsys_debug_out();
@@ -446,19 +455,20 @@ gboolean qimsys_preedit_manager_set_surrounding_text(QimsysPreeditManager *qpm, 
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue v = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&v, G_TYPE_STRING);
         g_value_set_string(&v, value);
-        g_value_array_append(values, &v);
+        g_array_append_val(values, v);
         g_value_unset(&v);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setSurroundingText", &error, G_TYPE_STRING, values, G_TYPE_INVALID, G_TYPE_INVALID))
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -473,20 +483,21 @@ gboolean qimsys_preedit_manager_get_current_selection(QimsysPreeditManager *qpm,
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *v;
 
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "currentSelection", &error, G_TYPE_INVALID, G_TYPE_STRING, values, G_TYPE_INVALID))
 
-        v = g_value_array_get_nth(values, 0);
+        v = &g_array_index(values, GValue, 0);
         *value = g_strdup(g_value_get_string(v));
         g_value_unset(v);
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -497,19 +508,20 @@ gboolean qimsys_preedit_manager_set_current_selection(QimsysPreeditManager *qpm,
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue v = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&v, G_TYPE_STRING);
         g_value_set_string(&v, value);
-        g_value_array_append(values, &v);
+        g_array_append_val(values, v);
         g_value_unset(&v);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setCurrentSelection", &error, G_TYPE_STRING, values, G_TYPE_INVALID, G_TYPE_INVALID))
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -524,19 +536,20 @@ gboolean qimsys_preedit_manager_get_maximum_text_length(QimsysPreeditManager *qp
 {
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *values;
+    GArray *values;
     GValue *v;
 
     qimsys_debug_in();
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "maximumTextLength", &error, G_TYPE_INVALID, G_TYPE_INT, values, G_TYPE_INVALID))
 
-        v = g_value_array_get_nth(values, 0);
+        v = &g_array_index(values, GValue, 0);
         *value = g_value_get_int(v);
         g_value_unset(v);
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;
@@ -547,19 +560,20 @@ gboolean qimsys_preedit_manager_set_maximum_text_length(QimsysPreeditManager *qp
     gboolean ret = FALSE;
     GError *error = NULL;
     GValue v = G_VALUE_INIT;
-    GValueArray *values;
+    GArray *values;
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qpm))) {
-        values = g_value_array_new(0);
+        values = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+	g_array_set_clear_func(values, (GDestroyNotify) g_value_unset);
 
         g_value_init(&v, G_TYPE_INT);
         g_value_set_int(&v, value);
-        g_value_array_append(values, &v);
+        g_array_append_val(values, v);
         g_value_unset(&v);
 
         CHECK_DBUS_ERROR (ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qpm)->proxy, "setMaximumTextLength", &error, G_TYPE_INT, values, G_TYPE_INVALID, G_TYPE_INVALID))
-        g_value_array_free(values);
+        g_array_unref(values);
     }
     qimsys_debug_out();
     return ret;

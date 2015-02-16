@@ -37,7 +37,7 @@ static void qimsys_preedit_item_init(QimsysPreeditItem *item)
     qimsys_debug_out();
 }
 
-QimsysPreeditItem *qimsys_preedit_item_new(GValueArray *data)
+QimsysPreeditItem *qimsys_preedit_item_new(GArray *data)
 {
     char **strv_ptr;
     GValue *value;
@@ -47,63 +47,64 @@ QimsysPreeditItem *qimsys_preedit_item_new(GValueArray *data)
 
     ret = QIMSYSPREEDITITEM(g_object_new(QIMSYSPREEDITITEM_TYPE, NULL));
 
-    value = g_value_array_get_nth(data, 0);
+    value = &g_array_index(data, GValue, 0);
     ret->to = g_value_dup_boxed(value);
 
     for (strv_ptr = ret->to; *strv_ptr; *strv_ptr++) {
         qimsys_debug("%s(%d) %s\n", __FUNCTION__, __LINE__, *strv_ptr);
     }
 
-    value = g_value_array_get_nth(data, 1);
+    value = &g_array_index(data, GValue, 1);
     ret->from = g_value_dup_boxed(value);
 
-    value = g_value_array_get_nth(data, 2);
+    value = &g_array_index(data, GValue, 2);
     ret->raw_string = g_value_dup_boxed(value);
 
-    value = g_value_array_get_nth(data, 3);
+    value = &g_array_index(data, GValue, 3);
     ret->cursor = g_value_get_int(value);
 
-    value = g_value_array_get_nth(data, 4);
+    value = &g_array_index(data, GValue, 4);
     ret->selection = g_value_get_int(value);
 
-    value = g_value_array_get_nth(data, 5);
+    value = &g_array_index(data, GValue, 5);
     ret->modified = g_value_get_int(value);
 
     qimsys_debug_out();
     return ret;
 }
 
-GValueArray *qimsys_preedit_item_get_value(QimsysPreeditItem *item)
+GArray *qimsys_preedit_item_get_value(QimsysPreeditItem *item)
 {
     GValue value = G_VALUE_INIT;
-    GValueArray *ret;
+    GArray *ret;
 
     qimsys_debug_in();
 
-    ret = g_value_array_new(0);
+    ret = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+    g_array_set_clear_func(ret, (GDestroyNotify) g_value_unset);
 
     g_value_init(&value, G_TYPE_STRV);
     g_value_set_boxed(&value, item->to);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
     g_value_unset(&value);
 
     g_value_set_boxed(&value, item->from);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
     g_value_unset(&value);
 
     g_value_set_boxed(&value, item->raw_string);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
     g_value_unset(&value);
 
     g_value_init(&value, G_TYPE_INT);
     g_value_set_int(&value, item->cursor);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
 
     g_value_set_int(&value, item->selection);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
 
     g_value_set_int(&value, item->modified);
-    g_value_array_append(ret, &value);
+    g_array_append_val(ret, value);
 
     qimsys_debug_out();
     return ret;

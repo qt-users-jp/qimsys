@@ -44,7 +44,7 @@ static void qimsys_application_manager_focus_changed(DBusGProxy *proxy, gboolean
 static void qimsys_application_manager_window_changed(DBusGProxy *proxy, gulonglong value, gpointer user_data);
 static void qimsys_application_manager_widget_changed(DBusGProxy *proxy, gulonglong value, gpointer user_data);
 static void qimsys_application_manager_composing_changed(DBusGProxy *proxy, gboolean value, gpointer user_data);
-static void qimsys_application_manager_current_icon_changed(DBusGProxy *proxy, GValueArray *value, gpointer user_data);
+static void qimsys_application_manager_current_icon_changed(DBusGProxy *proxy, GArray *value, gpointer user_data);
 static void qimsys_application_manager_triggered(DBusGProxy *proxy, int value, gpointer user_data);
 static void qimsys_application_manager_settings_updated(DBusGProxy *proxy, char *value, gpointer user_data);
 
@@ -53,7 +53,7 @@ static void qimsys_application_manager_settings_updated(DBusGProxy *proxy, char 
 //#define QIMSYS_STRUCT_RECT (dbus_g_type_get_struct ("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
 
 //#define QIMSYS_STRUCT_BYTEARRAY (dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR))
-#define QIMSYS_STRUCT_ICON (dbus_g_type_get_struct ("GValueArray", DBUS_TYPE_G_UCHAR_ARRAY, G_TYPE_INVALID))
+#define QIMSYS_STRUCT_ICON (dbus_g_type_get_struct ("GArray", DBUS_TYPE_G_UCHAR_ARRAY, G_TYPE_INVALID))
 
 static void qimsys_application_manager_class_init(QimsysApplicationManagerClass *klass)
 {
@@ -353,19 +353,20 @@ gboolean qimsys_application_manager_get_current_icon(QimsysApplicationManager *q
     guint i;
     gboolean ret = FALSE;
     GError *error = NULL;
-    GValueArray *va = 0;
+    GArray *va = 0;
 
     qimsys_debug_in();
 
     if (qimsys_abstract_ipc_object_is_connected(QIMSYSABSTRACTIPCOBJECT(qam))) {
-        va = g_value_array_new(0);
+        va = g_array_sized_new(FALSE, TRUE, sizeof(GValue), 0);
+        g_array_set_clear_func(va, (GDestroyNotify) g_value_unset);
 
         CHECK_DBUS_ERROR(ret, !dbus_g_proxy_call(QIMSYSABSTRACTIPCOBJECT(qam)->proxy, "currentIcon", &error, G_TYPE_INVALID, QIMSYS_STRUCT_ICON, &va, G_TYPE_INVALID))
 
-        for (i = 0; i < va->n_values; i++) {
+        for (i = 0; i < va->len; i++) {
             GValue *v;
             GByteArray *ba;
-            v = g_value_array_get_nth(va, i);
+            v = &g_array_index(va, GValue, i);
             if (G_VALUE_HOLDS (v, DBUS_TYPE_G_UCHAR_ARRAY)) {
                 GdkPixbufLoader *loader = gdk_pixbuf_loader_new();
                 ba = (GByteArray *)g_value_get_boxed(v);
@@ -378,7 +379,7 @@ gboolean qimsys_application_manager_get_current_icon(QimsysApplicationManager *q
                 g_print("Error\n");
             }
         }
-        g_value_array_free(va);
+        g_array_unref(va);
     }
 
     qimsys_debug_out();
@@ -399,7 +400,7 @@ gboolean qimsys_application_manager_set_current_icon(QimsysApplicationManager *q
     return ret;
 }
 
-void qimsys_application_manager_current_icon_changed(DBusGProxy *proxy, GValueArray *value, gpointer user_data)
+void qimsys_application_manager_current_icon_changed(DBusGProxy *proxy, GArray *value, gpointer user_data)
 {
     guint i;
     GError *error = NULL;
@@ -407,9 +408,9 @@ void qimsys_application_manager_current_icon_changed(DBusGProxy *proxy, GValueAr
 
     qimsys_debug_in();
 
-    for (i = 0; i < value->n_values; i++) {
+    for (i = 0; i < value->len; i++) {
         GValue *v;
-        v = g_value_array_get_nth(value, i);
+        v = &g_array_index(value, GValue, i);
         if (G_VALUE_HOLDS (v, DBUS_TYPE_G_UCHAR_ARRAY)) {
             GByteArray *ba;
             GdkPixbufLoader *loader = gdk_pixbuf_loader_new();

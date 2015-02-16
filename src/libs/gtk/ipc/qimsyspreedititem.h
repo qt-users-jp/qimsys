@@ -21,6 +21,7 @@
 #ifndef QIMSYSPREEDITITEM_H
 #define QIMSYSPREEDITITEM_H
 
+#include <glib.h>
 #include <glib-object.h>
 #include "qimsysglobal.h"
 
@@ -37,7 +38,7 @@ G_BEGIN_DECLS
 #define IS_QIMSYSPREEDITITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), QIMSYSPREEDITITEM_TYPE))
 #define QIMSYSPREEDITITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), QIMSYSPREEDITITEM, QimsysPreeditItemClass))
 
-#define QIMSYS_STRUCT_PREEDITITEM (dbus_g_type_get_struct ("GValueArray", G_TYPE_STRV, G_TYPE_STRV, G_TYPE_STRV, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
+#define QIMSYS_STRUCT_PREEDITITEM (dbus_g_type_get_struct ("GArray", G_TYPE_STRV, G_TYPE_STRV, G_TYPE_STRV, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_INVALID))
 
 typedef struct _QimsysPreeditItem       QimsysPreeditItem;
 typedef struct _QimsysPreeditItemClass  QimsysPreeditItemClass;
@@ -62,8 +63,8 @@ struct _QimsysPreeditItemClass
 };
 
 QIMSYS_EXPORT GType qimsys_preedit_item_get_type();
-QIMSYS_EXPORT QimsysPreeditItem *qimsys_preedit_item_new(GValueArray *data);
-QIMSYS_EXPORT GValueArray *qimsys_preedit_item_get_value(QimsysPreeditItem *item);
+QIMSYS_EXPORT QimsysPreeditItem *qimsys_preedit_item_new(GArray *data);
+QIMSYS_EXPORT GArray *qimsys_preedit_item_get_value(QimsysPreeditItem *item);
 
 G_END_DECLS
 
