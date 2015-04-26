@@ -23,6 +23,8 @@
 
 #include "qimsysglobal.h"
 
+#include <QtCore/QDataStream>
+
 #define DATASTREAM_IN(T, ...) \
     QIMSYS_EXPORT inline QDataStream &operator>>(QDataStream &s, T) \
     { \
