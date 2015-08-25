@@ -26,7 +26,7 @@
 class InputContextPlugin : public QPlatformInputContextPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QPlatformInputContextFactoryInterface" FILE "qimsys.json")
+    Q_PLUGIN_METADATA(IID QPlatformInputContextFactoryInterface_iid FILE "qimsys.json")
 
 public:
     QPlatformInputContext *create(const QString&, const QStringList&);
