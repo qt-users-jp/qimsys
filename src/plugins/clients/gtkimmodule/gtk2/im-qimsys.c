@@ -1,6 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2010 by Tasuku Suzuki <stasuku@gmail.com>                 *
+ *   Copyright (C) 2010-2016 by Tasuku Suzuki <stasuku@gmail.com>            *
+ *   Copyright (C) 2016 by Takahiro Hashimoto <kenya888@gmail.com>           *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -22,7 +23,7 @@
 #include <gtk/gtkimmodule.h>
 
 #include <qimsysdebug.h>
-#include "qimsysimcontext.h"
+#include "../qimsysimcontext.h"
 
 // http://library.gnome.org/devel/gtk/unstable/GtkIMContext.html
 

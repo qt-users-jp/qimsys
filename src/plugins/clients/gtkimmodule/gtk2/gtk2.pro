@@ -1,29 +1,29 @@
 TEMPLATE = lib
 TARGET = im-qimsys-gtk
 
-isEmpty(GTK_IM_MODULE_DIR) {
+isEmpty(GTK2_IM_MODULE_DIR) {
     target.path = $$system(pkg-config --variable=libdir gtk+-2.0)/gtk-2.0/$$system(pkg-config --variable=gtk_binary_version gtk+-2.0)/immodules/
 } else {
-    target.path = $$GTK_IM_MODULE_DIR
+    target.path = $$GTK2_IM_MODULE_DIR
 }
 
 CONFIG += gtk
 CONFIG -= qt
 QT -= core gui
 
-include(../../../../qimsysplugin.pri)
+include(../../../../../qimsysplugin.pri)
 
 CONFIG += link_pkgconfig
 PKGCONFIG += gtk+-2.0
 
 HEADERS = \
-    qimsysimcontext.h \
-    gtk2qt.h
+    ../qimsysimcontext.h \
+    ../gtk2qt.h
 SOURCES = \
     im-qimsys.c \
     qimsysimcontext.c
 
-DESTDIR = $$QIMSYS_BUILD_TREE/$$QIMSYS_LIBRARY_PATH/plugins/inputmethods
+DESTDIR = $$QIMSYS_BUILD_TREE/$$QIMSYS_LIBRARY_PATH/plugins/inputmethods/gtk2immodules
 
 update_local_gtk_immodules.path = $$DESTDIR
 update_local_gtk_immodules.depends = all
@@ -40,4 +40,4 @@ update_gtk_immodules.commands = (test -w /etc/gtk-2.0/gtk.immodules && (gtk-quer
 INSTALLS += update_gtk_immodules
 
 OTHER_FILES += \
-    gtk2qtkey.tbl
+    ../gtk2qtkey.tbl

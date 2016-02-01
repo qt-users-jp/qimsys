@@ -1,6 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2010 by Tasuku Suzuki <stasuku@gmail.com>                 *
+ *   Copyright (C) 2010-2016 by Tasuku Suzuki <stasuku@gmail.com>            *
+ *   Copyright (C) 2016 by Takahiro Hashimoto <kenya888@gmail.com>           *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -18,7 +19,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "qimsysimcontext.h"
+#include "../qimsysimcontext.h"
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <qimsysdebug.h>
@@ -28,7 +29,7 @@
 #include <qimsyskeyboardmanager.h>
 #include <qimsyspreeditmanager.h>
 #include <string.h>
-#include "gtk2qt.h"
+#include "../gtk2qt.h"
 
 #define QIMSYS_IM_CONTEXT_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), QIMSYS_IM_CONTEXT_TYPE, QimsysIMContextPrivate))
 

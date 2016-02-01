@@ -20,7 +20,8 @@ class Configure
             raise ArgumentError "unknown qmake version #{@qmake_version}"
         end
         @qt_im_module_default = @qt_im_module.dup
-        @gtk_im_module = `pkg-config --variable=libdir gtk+-2.0`.chomp + "/gtk-2.0/" + `pkg-config --variable=gtk_binary_version gtk+-2.0`.chomp + "/immodules"
+        @gtk2_im_module = `pkg-config --variable=libdir gtk+-2.0`.chomp + "/gtk-2.0/" + `pkg-config --variable=gtk_binary_version gtk+-2.0`.chomp + "/immodules"
+        @gtk3_im_module = `pkg-config --variable=libdir gtk+-3.0`.chomp + "/gtk-3.0/" + `pkg-config --variable=gtk_binary_version gtk+-3.0`.chomp + "/immodules"
         @config = []
         parseOpt()
         checkPro()
@@ -32,7 +33,8 @@ class Configure
         opt.on("--prefix=#{@install_root}", "install root" ) { |val| @install_root = val }
         opt.on("--qmake=#{@qmake}", 'path to qmake to use') { |val| @qmake = val }
         opt.on("--qt_im_module", "install dir for immodule for Qt") { @qt_im_module = val }
-        opt.on("--gtk_im_module", "install dir for immodule for Gtk") { @gtk_im_module = val }
+        opt.on("--gtk2_im_module", "install dir for immodule for Gtk+2") { @gtk2_im_module = val }
+        opt.on("--gtk3_im_module", "install dir for immodule for Gtk+3") { @gtk3_im_module = val }
         opt.on("--no-dbus", "build and install qimsys without dbus") { @config.push( 'no-dbus' ) }
         opt.on("--no-systemtray", "build and install qimsys without systemtray") { @config.push( 'no-systemtray' ) }
         opt.on("--no-toolbar", "build and install qimsys without toolbar") { @config.push( 'no-toolbar' ) }
@@ -73,14 +75,16 @@ class Configure
         cmd.push '-r'
         cmd.push "PREFIX=#{@install_root}"
         cmd.push "QT_IM_MODULE_DIR=#{@qt_im_module}"
-        cmd.push "GTK_IM_MODULE_DIR=#{@gtk_im_module}"
+        cmd.push "GTK2_IM_MODULE_DIR=#{@gtk2_im_module}"
+        cmd.push "GTK3_IM_MODULE_DIR=#{@gtk3_im_module}"
         cmd.push "CONFIG+=#{@debug ? 'debug' : 'release'}"
         cmd.push @config.collect{ |c| "QIMSYS_CONFIG+=#{c}" } unless @config.empty?
 
         print "Qt(qmake)          : #{@qmake} #{@debug ? '(Debug)' : ''}\n"
         print "Prefix             : #{@install_root}\n"
         print "immodule for Qt    : #{@qt_im_module}\n"
-        print "immodule for Gtk   : #{@gtk_im_module}\n"
+        print "immodule for Gtk+2 : #{@gtk2_im_module}\n"
+        print "immodule for Gtk+3 : #{@gtk3_im_module}\n"
         print "DBus               : #{@config.include?('no-dbus') ? 'No' : 'Yes'}\n"
         print "System Tray        : #{@config.include?('no-systemtray') ? 'No' : 'Yes'}\n"
         print "Toolbar            : #{@config.include?('no-toolbar') ? 'No' : 'Yes'}\n"

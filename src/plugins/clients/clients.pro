@@ -5,10 +5,7 @@ qimsys_platform_linux {
     isEqual(QT_MAJOR_VERSION, 5) {
         !contains(QIMSYS_CONFIG, no-dbus) {
             !contains(QIMSYS_CONFIG, no-qt5immodule) SUBDIRS += qt5immodule
-
-            !contains(QIMSYS_CONFIG, no-gtk) {
-                !contains(QIMSYS_CONFIG, no-gtk2immodule) SUBDIRS += gtk2immodule
-            }
+            !contains(QIMSYS_CONFIG, no-gtk) SUBDIRS += gtkimmodule
         }
 
         !contains(QIMSYS_CONFIG, no-xim) {

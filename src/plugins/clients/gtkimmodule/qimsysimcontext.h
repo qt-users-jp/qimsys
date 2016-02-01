@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   qimsys                                                                  *
- *   Copyright (C) 2009-2015 by Tasuku Suzuki <stasuku@gmail.com>            *
+ *   Copyright (C) 2009-2016 by Tasuku Suzuki <stasuku@gmail.com>            *
  *                                                                           *
  *   This program is free software; you can redistribute it and/or modify    *
  *   it under the terms of the GNU General Lesser Public License as          *
@@ -18,28 +18,46 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#ifndef GTK2QT_H
-#define GTK2QT_H
+#ifndef QIMSYSIMCONTEXT_H
+#define QIMSYSIMCONTEXT_H
 
-#include <gdk/gdkkeysyms.h>
+#include <gtk/gtk.h>
 
-static const int qimsys_gtk2qt_key_tbl[] = {
-#include "gtk2qtkey.tbl"
-    0,                          0
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#define QIMSYS_IM_CONTEXT_TYPE            (qimsys_im_context_get_type())
+#define QIMSYS_IM_CONTEXT(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), QIMSYS_IM_CONTEXT_TYPE, QimsysIMContext))
+#define QIMSYS_IM_CONTEXT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass), QIMSYS_TYPE_IM_CONTEXT, QimsysIMContextClass))
+#define IS_QIMSYS_IM_CONTEXT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), QIMSYS_IM_CONTEXT_TYPE))
+#define IS_QIMSYS_IM_CONTEXT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), QIMSYS_IM_CONTEXT_TYPE))
+#define QIMSYS_IM_CONTEXT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), QIMSYS_IM_CONTEXT, QimsysIMContext))
+
+typedef struct _QimsysIMContext QimsysIMContext;
+typedef struct _QimsysIMContextClass QimsysIMContextClass;
+typedef struct _QimsysIMContextPrivate QimsysIMContextPrivate;
+
+struct _QimsysIMContext {
+    GtkIMContext parent_instance;
+
+    QimsysIMContextPrivate *d;
 };
 
-static inline int qimsys_gtk2qt_key_convert(int key)
-{
-    int i;
-    int ret = key;
+struct _QimsysIMContextClass {
+    GtkIMContextClass parent_class;
 
-    for (i = 0; qimsys_gtk2qt_key_tbl[i]; i += 2) {
-        if (qimsys_gtk2qt_key_tbl[i] == key) {
-            ret = qimsys_gtk2qt_key_tbl[i+1];
-            break;
-        }
-    }
-    return ret;
-}
+    GtkIMContext *current_context;
+};
 
-#endif // GTK2QT_H
+void qimsys_im_context_register_type(GTypeModule *module);
+GType qimsys_im_context_get_type();
+
+QimsysIMContext *qimsys_im_context_new();
+
+#ifdef __cplusplus
+}   // extern "C"
+#endif
+
+#endif // QIMSYSIMCONTEXT_H
