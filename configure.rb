@@ -38,6 +38,7 @@ class Configure
         opt.on("--no-dbus", "build and install qimsys without dbus") { @config.push( 'no-dbus' ) }
         opt.on("--no-systemtray", "build and install qimsys without systemtray") { @config.push( 'no-systemtray' ) }
         opt.on("--no-toolbar", "build and install qimsys without toolbar") { @config.push( 'no-toolbar' ) }
+        opt.on("--no-xim", "disable xim support") { @config.push( 'no-xim' ) }
         opt.on("--no-socialime", "disable socialime support") { @config.push( 'no-socialime' ) }
         opt.on("--no-googleime", "disable googleime cgi api support") { @config.push( 'no-googleime' ) }
         opt.on("--debug", 'build qimsys in debug mode') { @debug = true }
@@ -88,6 +89,7 @@ class Configure
         print "DBus               : #{@config.include?('no-dbus') ? 'No' : 'Yes'}\n"
         print "System Tray        : #{@config.include?('no-systemtray') ? 'No' : 'Yes'}\n"
         print "Toolbar            : #{@config.include?('no-toolbar') ? 'No' : 'Yes'}\n"
+        print "XIM                : #{@config.include?('no-xim') ? 'No' : 'Yes'}\n"
         print "Social IME         : #{@config.include?('no-socialime') ? 'No' : 'Yes'}\n"
         print "Google IME CGI API : #{@config.include?('no-googleime') ? 'No' : 'Yes'}\n"
         print "SDK                : #{@config.include?('sdk') ? 'Yes' : 'No'}\n"
